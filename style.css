@@ -1,269 +1,390 @@
-/* ========= أنماط CSS العامة =========
-*/
-
-/* أنماط أساسية للجسم والصفحة */
+/* ========= أنماط CSS العامة ========= */
 body {
-    /* === التعديل هنا: استخدام Tajawal كخط أساسي === */
-    font-family: 'Tajawal', 'Inter', sans-serif; /* استخدام خطوط عربية */
-    /* =========================================== */
-    background-image: url('https://i.postimg.cc/CxjkYqMf/IMG-20250622-225955.jpg'); /* خلفية الصفحة */
-    background-size: cover; /* تغطية كاملة للخلفية */
-    background-attachment: fixed; /* تثبيت الخلفية */
-    background-position: center center; /* توسيط الخلفية */
-    color: #e0e0e0; /* لون النص الأساسي */
-    margin: 0; /* إزالة الهوامش */
-    padding: 0; /* إزالة الحشو */
+    font-family: 'Tajawal', 'Inter', sans-serif;
+    background-image: url('https://i.postimg.cc/CxjkYqMf/IMG-20250622-225955.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
 }
 
-/* حاوية المحتوى الرئيسية */
 .container {
-    max-width: 1200px; /* أقصى عرض */
-    margin: 0 auto; /* توسيط أفقي */
-    padding: 1.5rem; /* حشو داخلي */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
 }
 
-/* أنماط عناوين الأقسام */
 .section-title {
-    position: relative; /* مهم لخط التصميم التحتي */
-    font-size: 3rem; /* حجم الخط */
-    font-weight: 800; /* سماكة الخط */
-    color: #00ffff; /* لون النص */
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6); /* ظل للنص */
-    padding-bottom: 0.75rem; /* حشو سفلي */
-    margin-bottom: 3rem; /* هامش سفلي */
-    text-align: center; /* توسيط النص */
-    /* === التعديل هنا: تحسين تباعد الأحرف والكلمات === */
-    letter-spacing: 1px; /* إضافة تباعد طفيف بين الأحرف */
-    word-spacing: 3px;  /* إضافة تباعد طفيف بين الكلمات */
-    /* =============================================== */
+    position: relative;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    padding-bottom: 0.75rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    letter-spacing: 1px;
+    word-spacing: 3px;
 }
 
-/* الخط الذهبي تحت عناوين الأقسام */
 .section-title::after {
-    content: ''; /* عنصر زائف */
-    position: absolute; /* وضعية مطلقة */
-    left: 50%; /* بداية من المنتصف */
-    bottom: 0; /* من الأسفل */
-    transform: translateX(-50%); /* توسيط أفقي */
-    width: 120px; /* عرض الخط */
-    height: 6px; /* ارتفاع الخط */
-    background-color: #ffcc00; /* لون الخط */
-    border-radius: 9999px; /* حواف دائرية */
-    box-shadow: 0 0 15px rgba(255, 204, 0, 0.7); /* ظل للخط */
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 6px;
+    background-color: #ffcc00;
+    border-radius: 9999px;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
 }
 
-/* أنماط روابط القائمة */
+/* حل مشكلة التصاق عناوين القائمة */
+.nav-links-container {
+    display: flex;
+    gap: 2rem; /* مسافة بين الروابط */
+}
+
 .nav-link {
-    transition: all 0.3s ease; /* تأثير انتقالي */
-    position: relative; /* مهم للخط التحتي */
-    padding-bottom: 0.25rem; /* حشو سفلي */
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0.25rem;
+    font-size: 1.1rem;
+    margin: 0 0.5rem; /* مسافة جانبية إضافية */
 }
 
-/* تأثيرات عند مرور الماوس على الروابط */
 .nav-link:hover {
-    color: #ffcc00; /* تغيير لون النص */
-    transform: translateY(-2px); /* تحريك لأعلى */
+    color: #ffcc00;
+    transform: translateY(-2px);
 }
 
-/* الخط التحتي للروابط */
 .nav-link::after {
-    content: ''; /* عنصر زائف */
-    position: absolute; /* وضعية مطلقة */
-    bottom: 0; /* من الأسفل */
-    left: 50%; /* بداية من المنتصف */
-    transform: translateX(-50%); /* توسيط أفقي */
-    width: 0; /* العرض الابتدائي (غير مرئي) */
-    height: 3px; /* ارتفاع الخط */
-    background-color: #ffcc00; /* لون الخط */
-    transition: width 0.3s ease; /* تأثير انتقالي */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: #ffcc00;
+    transition: width 0.3s ease;
 }
 
-/* توسيع الخط التحتي عند المرور */
 .nav-link:hover::after {
-    width: 100%; /* توسيع للعرض الكامل */
+    width: 100%;
 }
 
-/* أنماط الرابط النشط */
 .active-link {
-    color: #00ffff; /* لون النص */
-    font-weight: bold; /* نص عريض */
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.4); /* ظل للنص */
+    color: #00ffff;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);
 }
 
-/* الخط التحتي للرابط النشط */
 .active-link::after {
-    content: ''; /* عنصر زائف */
-    position: absolute; /* وضعية مطلقة */
-    bottom: 0; /* من الأسفل */
-    left: 50%; /* بداية من المنتصف */
-    transform: translateX(-50%); /* توسيط أفقي */
-    width: 100%; /* عرض كامل */
-    height: 3px; /* ارتفاع الخط */
-    background-color: #00ffff; /* لون الخط */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 3px;
+    background-color: #00ffff;
 }
 
-/* خلفيات كتل المحتوى */
 .content-block-bg {
-    background-color: rgba(10, 25, 40, 0.95); /* خلفية شبه شفافة */
-    border: 2px solid #00ffff; /* حدود زرقاء */
-    border-radius: 1.5rem; /* حواف مدورة */
-    box-shadow: 0 8px 15px rgba(0, 255, 255, 0.2), 0 4px 8px rgba(0, 0, 0, 0.4); /* ظلال */
+    background-color: rgba(10, 25, 40, 0.95);
+    border: 2px solid #00ffff;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 15px rgba(0, 255, 255, 0.2), 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* أنماط البطاقات (الكاردات) */
 .card {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* ظل خفيف */
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* تأثيرات انتقالية */
-    border: 1px solid rgba(0, 255, 255, 0.3); /* حدود شفافة */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid rgba(0, 255, 255, 0.3);
 }
 
-/* تأثيرات البطاقات عند المرور */
 .card:hover {
-    transform: translateY(-8px); /* تحريك لأعلى */
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5), 0 6px 12px rgba(0, 0, 0, 0.3); /* ظلال أكبر */
-    border-color: #ffcc00; /* تغيير لون الحدود */
+    transform: translateY(-8px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5), 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-color: #ffcc00;
 }
 
-/* أنماط الأزرار الأساسية */
 .btn-primary {
-    background-image: linear-gradient(to right, #007bff, #00c6ff); /* تدرج لوني */
-    transition: all 0.3s ease; /* تأثير انتقالي */
-    box-shadow: 0 6px 10px rgba(0, 198, 255, 0.4); /* ظل */
-    border: 2px solid #00ffff; /* حدود */
-    color: #050d19; /* لون النص */
-    font-weight: bold; /* نص عريض */
-    padding: 0.75rem 2rem; /* حشو داخلي */
-    border-radius: 9999px; /* حواف دائرية */
-    display: inline-block; /* عرض كتلة سطرية */
-    text-align: center; /* توسيط النص */
-    cursor: pointer; /* مؤشر يد */
+    background-image: linear-gradient(to right, #007bff, #00c6ff);
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 10px rgba(0, 198, 255, 0.4);
+    border: 2px solid #00ffff;
+    color: #050d19;
+    font-weight: bold;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
 }
 
-/* تأثيرات الأزرار الأساسية عند المرور */
 .btn-primary:hover {
-    transform: translateY(-3px) scale(1.02); /* تحريك وتكبير */
-    box-shadow: 0 8px 15px rgba(0, 198, 255, 0.6); /* ظل أكبر */
-    background-image: linear-gradient(to right, #00c6ff, #007bff); /* عكس التدرج */
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 15px rgba(0, 198, 255, 0.6);
+    background-image: linear-gradient(to right, #00c6ff, #007bff);
 }
 
-/* أنماط الأزرار الثانوية */
 .btn-secondary {
-    background-image: linear-gradient(to right, #ffcc00, #ff8c00); /* تدرج لوني */
-    transition: all 0.3s ease; /* تأثير انتقالي */
-    box-shadow: 0 6px 10px rgba(255, 204, 0, 0.4); /* ظل */
-    border: 2px solid #ffff00; /* حدود */
-    color: #050d19; /* لون النص */
-    font-weight: bold; /* نص عريض */
-    padding: 0.75rem 2rem; /* حشو داخلي */
-    border-radius: 9999px; /* حواف دائرية */
-    display: inline-block; /* عرض كتلة سطرية */
-    text-align: center; /* توسيط النص */
-    cursor: pointer; /* مؤشر يد */
+    background-image: linear-gradient(to right, #ffcc00, #ff8c00);
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 10px rgba(255, 204, 0, 0.4);
+    border: 2px solid #ffff00;
+    color: #050d19;
+    font-weight: bold;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
 }
 
-/* تأثيرات الأزرار الثانوية عند المرور */
 .btn-secondary:hover {
-    transform: translateY(-3px) scale(1.02); /* تحريك وتكبير */
-    box-shadow: 0 8px 15px rgba(255, 204, 0, 0.6); /* ظل أكبر */
-    background-image: linear-gradient(to right, #ff8c00, #ffcc00); /* عكس التدرج */
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 15px rgba(255, 204, 0, 0.6);
+    background-image: linear-gradient(to right, #ff8c00, #ffcc00);
 }
 
-/* أنماط نافذة الرسالة العائمة */
 .floating-message-overlay {
-    background-color: rgba(0, 0, 0, 0.8); /* خلفية شبه شفافة */
-    position: fixed; /* تثبيت في المكان */
-    top: 0; /* من الأعلى */
-    left: 0; /* من اليسار */
-    right: 0; /* من اليمين */
-    bottom: 0; /* من الأسفل */
-    display: flex; /* استخدام flexbox */
-    align-items: center; /* توسيط عمودي */
-    justify-content: center; /* توسيط أفقي */
-    z-index: 50; /* الترتيب الطبقي */
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
 }
 
-/* محتوى نافذة الرسالة */
 .floating-message-content {
-    animation: fadeInScale 0.3s ease-out forwards; /* تأثير الظهور */
-    background-color: rgba(15, 35, 60, 0.98); /* خلفية */
-    border: 3px solid #ffcc00; /* حدود */
-    box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4), 0 5px 15px rgba(0, 0, 0, 0.6); /* ظلال */
-    color: #e0e0e0; /* لون النص */
-    padding: 2rem; /* حشو داخلي */
-    border-radius: 1rem; /* حواف مدورة */
-    max-width: 600px; /* أقصى عرض */
-    text-align: center; /* توسيط النص */
-    position: relative; /* مهم لأزرار الإغلاق */
+    animation: fadeInScale 0.3s ease-out forwards;
+    background-color: rgba(15, 35, 60, 0.98);
+    border: 3px solid #ffcc00;
+    box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4), 0 5px 15px rgba(0, 0, 0, 0.6);
+    color: #e0e0e0;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
 }
 
-/* تأثير ظهور الرسالة */
 @keyframes fadeInScale {
     from {
-        opacity: 0; /* اختفاء كامل */
-        transform: scale(0.9); /* تصغير */
+        opacity: 0;
+        transform: scale(0.9);
     }
     to {
-        opacity: 1; /* ظهور كامل */
-        transform: scale(1); /* الحجم الطبيعي */
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
-/* حاوية الفيديو */
 .video-container {
-    position: relative; /* مهم للفيديو داخلها */
-    padding-bottom: 56.25%; /* نسبة العرض إلى الارتفاع (16:9) */
-    height: 0; /* ارتفاع صفري */
-    overflow: hidden; /* إخفاء الزوائد */
-    border-radius: 0.75rem; /* حواف مدورة */
-    border: 2px solid #00ffff; /* حدود */
-    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3); /* ظل */
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 2px solid #00ffff;
+    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
 }
 
-/* أنماط الفيديو داخل الحاوية */
 .video-container iframe {
-    position: absolute; /* وضعية مطلقة */
-    top: 0; /* من الأعلى */
-    left: 0; /* من اليسار */
-    width: 100%; /* عرض كامل */
-    height: 100%; /* ارتفاع كامل */
-    border: 0; /* إزالة الحدود */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
-/* زر Discord العائم */
 .discord-fab {
-    position: fixed; /* تثبيت في المكان */
-    bottom: 1.5rem; /* من الأسفل */
-    left: 1.5rem; /* من اليسار */
-    background-color: #5865F2; /* لون الخلفية */
-    color: white; /* لون النص */
-    border-radius: 9999px; /* دائري بالكامل */
-    width: 4rem; /* عرض */
-    height: 4rem; /* ارتفاع */
-    display: flex; /* استخدام flexbox */
-    align-items: center; /* توسيط عمودي */
-    justify-content: center; /* توسيط أفقي */
-    cursor: pointer; /* مؤشر يد */
-    box-shadow: 0 8px 15px rgba(88, 101, 242, 0.4); /* ظل */
-    transition: all 0.3s ease; /* تأثير انتقالي */
-    z-index: 50; /* الترتيب الطبقي */
-    border: 2px solid #7289DA; /* حدود */
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    background-color: #5865F2;
+    color: white;
+    border-radius: 9999px;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(88, 101, 242, 0.4);
+    transition: all 0.3s ease;
+    z-index: 50;
+    border: 2px solid #7289DA;
 }
 
-/* تأثيرات زر Discord عند المرور */
 .discord-fab:hover {
-    transform: translateY(-5px) scale(1.05); /* تحريك وتكبير */
-    box-shadow: 0 12px 20px rgba(88, 101, 242, 0.6); /* ظل أكبر */
-    background-color: #4f5cd8; /* لون خلفية أغمق */
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 20px rgba(88, 101, 242, 0.6);
+    background-color: #4f5cd8;
 }
 
-/* أنماط أيقونة Discord */
 .discord-fab svg {
-    width: 2rem; /* عرض الأيقونة */
-    height: 2rem; /* ارتفاع الأيقونة */
-    fill: white; /* لون التعبئة */
+    width: 2rem;
+    height: 2rem;
+    fill: white;
 }
 
-/* فئة للاختباء (إخفاء العناصر) */
 .hidden {
-    display: none; /* إخفاء العنصر */
+    display: none;
+}
+
+/* تحسينات إضافية للتصميم */
+.header-logo {
+    transition: transform 0.3s ease;
+}
+
+.header-logo:hover {
+    transform: scale(1.05);
+}
+
+.featured-box {
+    background: linear-gradient(135deg, rgba(0, 119, 182, 0.8), rgba(0, 180, 216, 0.8));
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 198, 255, 0.4);
+}
+
+.download-section {
+    background: linear-gradient(135deg, rgba(15, 35, 60, 0.95), rgba(25, 55, 90, 0.95));
+    border: 2px solid #ffcc00;
+}
+
+.team-table tr:nth-child(even) {
+    background-color: rgba(20, 45, 70, 0.5);
+}
+
+.team-table tr:hover {
+    background-color: rgba(30, 65, 100, 0.7);
+}
+
+/* ===== تحسينات للهاتف المحمول ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .section-title::after {
+        width: 80px;
+        height: 4px;
+    }
+    
+    .header {
+        padding: 1rem 0;
+    }
+    
+    .header-logo {
+        height: 50px;
+    }
+    
+    .nav-links-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 0.5rem;
+    }
+    
+    .nav-link {
+        font-size: 1rem;
+        margin: 0;
+        padding: 0.25rem;
+    }
+    
+    .featured-box {
+        padding: 1.5rem;
+    }
+    
+    .featured-box h1 {
+        font-size: 1.8rem;
+    }
+    
+    .featured-box p {
+        font-size: 1rem;
+    }
+    
+    .download-section {
+        padding: 1.5rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        display: block;
+        width: 100%;
+        margin-bottom: 0.75rem;
+    }
+    
+    .grid-cols-1, .grid-cols-2, .grid-cols-3 {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .video-container {
+        margin-bottom: 1rem;
+    }
+    
+    .team-table {
+        font-size: 0.85rem;
+    }
+    
+    .team-table th, .team-table td {
+        padding: 0.5rem;
+    }
+    
+    .floating-message-content {
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+    
+    .discord-fab {
+        width: 3.5rem;
+        height: 3.5rem;
+        bottom: 1rem;
+        left: 1rem;
+    }
+    
+    .discord-fab svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .featured-box h1 {
+        font-size: 1.5rem;
+    }
+    
+    .nav-links-container {
+        gap: 0.5rem;
+    }
+    
+    .nav-link {
+        font-size: 0.9rem;
+    }
+    
+    .featured-box, .download-section {
+        padding: 1rem;
+    }
 }
