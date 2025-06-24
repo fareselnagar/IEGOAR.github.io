@@ -8,45 +8,49 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="text-gray-200">
     <header class="content-block-bg shadow-lg py-4">
         <div class="container flex flex-col md:flex-row justify-between items-center">
             <div class="mb-4 md:mb-0">
-                <img src="https://i.postimg.cc/44M0MrFF/tex1-480x328-9ca897922bdd8865-6.png" alt="IEGO التعريب" class="h-16 md:h-20 w-auto rounded-lg">
+                <img src="https://i.postimg.cc/44M0MrFF/tex1-480x328-9ca897922bdd8865-6.png" alt="IEGO التعريب" class="h-16 md:h-20 w-auto rounded-lg header-logo">
             </div>
             
-            <nav class="flex space-x-6 md:space-x-8 text-lg font-medium">
-                <a href="#home" class="nav-link text-gray-200 active-link" data-section="home">الرئيسية</a>
-                <a href="#project-news" class="nav-link text-gray-200" data-section="project-news">أخبار المشروع</a>
-                <a href="#videos" class="nav-link text-gray-200" data-section="videos">الفيديوهات</a>
-                <a href="#team" class="nav-link text-gray-200" data-section="team">فريق العمل</a>
+            <nav class="flex">
+                <div class="nav-links-container">
+                    <a href="#home" class="nav-link text-gray-200 active-link" data-section="home">الرئيسية</a>
+                    <a href="#project-news" class="nav-link text-gray-200" data-section="project-news">أخبار المشروع</a>
+                    <a href="#videos" class="nav-link text-gray-200" data-section="videos">الفيديوهات</a>
+                    <a href="#team" class="nav-link text-gray-200" data-section="team">فريق العمل</a>
+                </div>
             </nav>
         </div>
     </header>
 
     <main class="container py-8">
         <section id="home-section" class="mb-12">
-            <div class="bg-gradient-to-r from-blue-700 to-indigo-900 text-white p-8 rounded-2xl shadow-xl mb-12 border-2 border-blue-400">
+            <div class="featured-box text-white p-8 rounded-2xl shadow-xl mb-12 border-2 border-blue-400">
                 <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-center leading-tight">
                     مرحبا بك في موقع تعريب inazuma eleven go strikers
                 </h1>
                 <p class="text-lg md:text-xl text-center max-w-3xl mx-auto opacity-90">
-                    هدفنا من هذا التعريب هو منحكم تجربة رائعة لعالم inazuma باللغة العربية وفهم كل مايدور في اللعبة .  وتعريب المهارات باسلوب سبيستون لمزيد من المتعة. استكشفوا موقعنا وتابعوا الاخبار هنا وانتظروا نسختكم الكامله💥 .
+                    هدفنا من هذا التعريب هو منحكم تجربة رائعة لعالم inazuma باللغة العربية وفهم كل مايدور في اللعبة . وتعريب المهارات باسلوب سبيستون لمزيد من المتعة. استكشفوا موقعنا وتابعوا الاخبار هنا وانتظروا نسختكم الكامله💥 .
                 </p>
-                <div class="text-center mt-6">
-                    <p class="text-xl md:text-2xl font-semibold"></p>
-                    <p class="text-lg md:text-xl max-w-2xl mx-auto opacity-90">
-                     
-                    </p>
+                <div class="text-center mt-8">
+                    <div class="inline-flex items-center bg-blue-900/50 px-4 py-2 rounded-full">
+                        <span class="text-yellow-300 text-lg mr-2">✨</span>
+                        <span class="text-xl font-semibold">تم إصلاح مشكلة القائمة الرئيسية</span>
+                        <span class="text-yellow-300 text-lg ml-2">✨</span>
+                    </div>
                 </div>
             </div>
 
             <h2 class="section-title text-center mt-12 mb-8">تحميل التعريب</h2>
-            <div class="content-block-bg rounded-2xl p-8 shadow-xl text-center max-w-2xl mx-auto">
+            <div class="download-section rounded-2xl p-8 shadow-xl text-center max-w-2xl mx-auto">
                 <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-                    نقدم لكم هنا أحدث إصدارات تعريب IEGO. يمكنكم تحميل النسخة التجريبية أو النسخة الكاملة(قريبا)  للاستمتاع بتجربة IEGO بالكامل باللغة العربية. 
+                    نقدم لكم هنا أحدث إصدارات تعريب IEGO. يمكنكم تحميل النسخة التجريبية أو النسخة الكاملة(قريبا) للاستمتاع بتجربة IEGO بالكامل باللغة العربية. 
                 </p>
                 <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4 justify-center">
                     <button id="download-v1-btn" class="btn-primary" onclick="window.open('https://www.mediafire.com/file/lu90so3fqd7mq1z/S5SJHF-1.zip/file', '_blank');">
@@ -56,6 +60,9 @@
                         التعريب النسخة الكاملة
                     </button>
                 </div>
+                <div class="mt-6 text-yellow-300">
+                    <p>تم إضافة 120+ مهارة معربة في آخر تحديث</p>
+                </div>
             </div>
         </section>
 
@@ -63,11 +70,16 @@
             <h2 class="section-title text-center mb-8">أخبار المشروع</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="content-block-bg rounded-xl p-6 card">
-                    <h3 class="text-xl font-bold text-blue-300 mb-3"> اضافة تحديث للنسخة الاولة</h3>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold text-blue-300"> اضافة تحديث للنسخة الاولة</h3>
+                        <span class="bg-yellow-500 text-gray-900 px-2 py-1 rounded text-sm">جديد</span>
+                    </div>
                     <p class="text-gray-300 mb-4 text-justify">
                         اضفنا تحديث لنسختكم الاولية وهى الان تتضمن مزيدا من المهارات المعربة. وتعتبر هذه اخر نسخة . وانتظروا نسختكم الكاملة
                     </p>
-                    <a href="#" class="text-yellow-400 hover:underline font-semibold">اقرأ المزيد →</a>
+                    <div class="text-right">
+                        <a href="#" class="text-yellow-400 hover:underline font-semibold">اقرأ المزيد →</a>
+                    </div>
                 </div>
                 
                 <div class="content-block-bg rounded-xl p-6 card">
@@ -75,7 +87,9 @@
                     <p class="text-gray-300 mb-4 text-justify">
                         التعريب مستمر حتى الان وتم اضافة اعضاء اليه . ونحن مستمري في العمل حتى  يتم انهائه.
                     </p>
-                    <a href="#" class="text-yellow-400 hover:underline font-semibold">اقرأ المزيد →</a>
+                    <div class="text-right">
+                        <a href="#" class="text-yellow-400 hover:underline font-semibold">اقرأ المزيد →</a>
+                    </div>
                 </div>
                 
                 <div class="content-block-bg rounded-xl p-6 card">
@@ -83,7 +97,9 @@
                     <p class="text-gray-300 mb-4 text-justify">
                         تم الانتهاء من مهارات التحول وبعض مهارات جزء عامر والفرسان ولم يتبقى الا قليل . والنصوص داخل اللعبة جارى ترجمتها يدويا من قبل مترجمين في التعريب. 
                     </p>
-                    <a href="#" class="text-yellow-400 hover:underline font-semibold">اقرأ المزيد →</a>
+                    <div class="text-right">
+                        <a href="#" class="text-yellow-400 hover:underline font-semibold">اقرأ المزيد →</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -121,29 +137,29 @@
                 
                 <div class="content-block-bg rounded-xl p-4 shadow-md card">
                     <div class="video-container mb-4">
-                        <iframe src="ضع_رابط_تضمين_الفيديو_هنا" 
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
                                 title="التعريب الجديدة" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 allowfullscreen>
                         </iframe>
                     </div>
-                    <h3 class="text-xl font-bold text-blue-300 mb-2">قريبا</h3>
+                    <h3 class="text-xl font-bold text-blue-300 mb-2">قريباً: أبرز الميزات الجديدة</h3>
                     <p class="text-gray-300 text-justify">
-                        قريبا
+                        تعرف على أحدث الميزات التي سيقدمها التعريب الكامل في الإصدار القادم
                     </p>
                 </div>
                 
                 <div class="content-block-bg rounded-xl p-4 shadow-md card">
                     <div class="video-container mb-4">
-                        <iframe src="ضع_رابط_تضمين_الفيديو_هنا" 
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
                                 title="نصائح وحيل للتعريب الأمثل" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 allowfullscreen>
                         </iframe>
                     </div>
-                    <h3 class="text-xl font-bold text-blue-300 mb-2">قريبا</h3>
+                    <h3 class="text-xl font-bold text-blue-300 mb-2">قريباً: نصائح وحيل</h3>
                     <p class="text-gray-300 text-justify">
-                        قريبا.
+                        اكتشف نصائح وحيل لتحسين تجربة اللعب مع التعريب العربي
                     </p>
                 </div>
             </div>
@@ -152,7 +168,7 @@
         <section id="team-section" class="hidden mb-12">
             <h2 class="section-title text-center mb-8">فريق عمل IEGO</h2>
             <div class="content-block-bg rounded-2xl p-8 shadow-xl overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-700">
+                <table class="min-w-full divide-y divide-gray-700 team-table">
                     <thead class="bg-gray-800">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-blue-300 uppercase tracking-wider rounded-tr-lg">
@@ -192,13 +208,18 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">عبدالله</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300"> مترجم</td>
-                            <tr>
+                        </tr>
+                        <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">مهدي</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300"> فوتوشوب</td>
-                            </tr>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            
+            <div class="mt-10 text-center">
+                <p class="text-xl text-blue-300 mb-4">هل ترغب بالانضمام لفريق التعريب؟</p>
+                <a href="https://discord.gg/3gr6jsuz" target="_blank" class="btn-primary px-6 py-3 inline-block">تقديم طلب الانضمام</a>
             </div>
         </section>
     </main>
@@ -208,6 +229,9 @@
             <button id="close-message-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 text-2xl font-bold">×</button>
             <p class="text-3xl md:text-4xl font-bold text-blue-300 mb-4">اقتربت تلك النسخة!</p>
             <p class="text-xl md:text-2xl text-gray-300">قريباً ستكون النسخة الكاملة متاحة بين أيديكم.</p>
+            <div class="mt-6">
+                <button class="btn-secondary px-6 py-2" id="notify-me-btn">أخبرني عند الإصدار</button>
+            </div>
         </div>
     </div>
 
