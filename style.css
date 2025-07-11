@@ -23,8 +23,8 @@
 /* أنماط الجسم والخلفية */
 body {
     font-family: 'Tajawal', 'Inter', sans-serif; /* استخدام خطوط Tajawal للعربية و Inter للإنجليزية */
-    /* تم تحديث صورة الخلفية هنا */
-    background-image: url('https://i.postimg.cc/m2x9CDDF/181fc43893546512.png'); /* الصورة الجديدة كخلفية */
+    /* تم تحديث مسار الصورة ليستخدم الصورة المحلية من ملفاتك */
+    background-image: url('181fc43893546512.png'); /* الصورة من ملفاتك المحلية على GitHub */
     background-size: cover; /* تغطية كاملة للخلفية */
     background-attachment: fixed; /* تثبيت الخلفية عند التمرير */
     background-position: center center; /* توسيط الخلفية */
