@@ -3,25 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع تعريب Inazuma Eleven - بوابتك للعالم العربي للألعاب</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>تعريب Inazuma Eleven GO Strikers 2013 | IEGO Translation Team</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Changa:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="text-gray-200">
-    <div class="particles" id="particles"></div>
-    
-    <header class="content-block-bg shadow-lg py-4 sticky top-0 z-30">
-        <div class="container flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0">
-                <img src="https://i.postimg.cc/BbhQhm36/tex1-480x328-9ca897922bdd8865-6.png" alt="شعار موقع تعريب Inazuma Eleven Go Strikers" class="h-16 md:h-20 w-auto rounded-lg header-logo">
+<body class="bg-gray-800 text-gray-100 font-cairo">
+
+    <div id="particles"></div>
+
+    <header class="content-block-bg shadow-lg py-3 sticky top-0 z-30">
+        <div class="container mx-auto px-4 flex justify-between items-center relative">
+            <div class="">
+                <img src="https://i.postimg.cc/BbhQhm36/tex1-480x328-9ca897922bdd8865-6.png" alt="شعار موقع تعريب Inazuma Eleven Go Strikers" class="h-12 md:h-16 w-auto rounded-lg header-logo">
             </div>
             
-            <nav class="flex">
-                <div class="nav-links-container">
+            <button id="hamburger-menu-btn" class="md:hidden text-gray-200 focus:outline-none z-50">
+                <i class="fas fa-bars text-3xl"></i>
+            </button>
+
+            <nav id="mobile-nav" class="fixed top-0 right-0 h-full w-64 bg-gray-900 shadow-lg transform translate-x-full transition-transform duration-500 ease-in-out md:static md:flex md:w-auto md:h-auto md:bg-transparent md:shadow-none md:translate-x-0 md:rtl:border-r-0 md:rtl:flex md:items-center">
+                <button id="close-menu-btn" class="absolute top-4 left-4 text-gray-400 hover:text-white text-4xl md:hidden z-50">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="nav-links-container flex flex-col md:flex-row items-center justify-center h-full pt-16 md:pt-0">
                     <a href="#home" class="nav-link text-gray-200 active-link" data-section="home" aria-current="page">الرئيسية</a>
                     <a href="#project-news" class="nav-link text-gray-200" data-section="project-news">أخبار المشروع</a>
                     <a href="#videos" class="nav-link text-gray-200" data-section="videos">الفيديوهات</a>
@@ -31,209 +39,155 @@
         </div>
     </header>
 
-    <main class="container py-8">
-        <section id="home-section" class="mb-12">
-            <div class="featured-box text-white p-8 rounded-2xl shadow-xl mb-12 border-2 border-blue-400">
-                <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-center leading-tight">
-                    مرحبا بك في موقع تعريب Inazuma Eleven Go Strikers
-                </h1>
-                <p class="text-lg md:text-xl text-center max-w-3xl mx-auto opacity-90">
-                    هدفنا من هذا التعريب هو منحكم تجربة رائعة لعالم Inazuma باللغة العربية وفهم كل ما يدور في اللعبة. وتعريب المهارات بأسلوب سبيستون لمزيد من المتعة. استكشفوا موقعنا وتابعوا الأخبار هنا وانتظروا نسختكم الكاملة💥.
-                </p>
-                <div class="text-center mt-8">
-                    <div class="inline-flex items-center bg-blue-900/50 px-4 py-2 rounded-full border border-yellow-400 shadow-lg" style="box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);">
-                        <span class="text-yellow-300 text-lg mr-2"><i class="fas fa-bolt"></i></span> <span class="text-xl font-semibold text-yellow-200"> </span>
-                        <span class="text-yellow-300 text-lg ml-2"><i class="fas fa-bolt"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="section-title text-center mt-12 mb-8">تحميل التعريب</h2>
-            <div class="download-section rounded-2xl p-8 shadow-xl text-center max-w-2xl mx-auto">
-                <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-                    نقدم لكم هنا أحدث إصدارات تعريب IEGO. يمكنكم تحميل النسخة التجريبية أو النسخة الكاملة (قريباً) للاستمتاع بتجربة IEGO بالكامل باللغة العربية. 
-                </p>
-                <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4 justify-center">
-                    <button id="download-v1-btn" class="btn-primary" onclick="window.open('https://www.mediafire.com/file/lu90so3fqd7mq1z/S5SJHF-1.zip/file', '_blank');" aria-label="تحميل النسخة الأولى المحدثة">
-                       (محدثة) التعريب النسخة الأولى
-                    </button>
-                    <button id="download-full-btn" class="btn-secondary" aria-label="تحميل النسخة الكاملة (قريباً)">
-                        التعريب النسخة الكاملة
-                    </button>
-                </div>
-                <div class="mt-6 text-yellow-300">
-                    <p>تم إضافة 120+ مهارة معربة في آخر تحديث</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="project-news-section" class="mb-12 hidden">
-            <h2 class="section-title text-center mb-8">أخبار المشروع</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="content-block-bg rounded-xl p-6 card" style="--delay: 0">
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold text-blue-300"> إضافة تحديث للنسخة الأولى</h3>
-                        <span class="bg-yellow-500 text-gray-900 px-2 py-1 rounded text-sm font-semibold">جديد</span>
-                    </div>
-                    <p class="text-gray-300 mb-4 text-justify">
-                        أضفنا تحديثاً لنسختكم الأولية وهي الآن تتضمن المزيد من المهارات المعربة. وتعتبر هذه آخر نسخة. انتظروا نسختكم الكاملة بفارغ الصبر!
+    <main class="relative z-10">
+        <section id="home-section" class="py-20 md:py-32 hidden section-transition">
+            <div class="container mx-auto px-4 text-center">
+                <div class="featured-box content-block-bg rounded-lg shadow-xl p-8 md:p-12 animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-yellow-400 mb-6 leading-tight">
+                        أهلاً بك في موقع تعريب <span class="text-blue-400">Inazuma Eleven GO Strikers 2013</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+                        نقدم لكم النسخة المترجمة بالكامل للعبة Inazuma Eleven GO Strikers 2013 WII، استمتعوا بتجربة لعب لا مثيل لها بلغتنا العربية!
                     </p>
-                    <div class="text-right">
-                        <a href="javascript:void(0)" class="text-yellow-400 hover:underline font-semibold" aria-label="اقرأ المزيد عن تحديث النسخة الأولى">اقرأ المزيد →</a>
-                    </div>
-                </div>
-                
-                <div class="content-block-bg rounded-xl p-6 card" style="--delay: 1">
-                    <h3 class="text-xl font-bold text-blue-300 mb-3"> مصير التعريب</h3>
-                    <p class="text-gray-300 mb-4 text-justify">
-                        التعريب مستمر حتى الآن وتم إضافة أعضاء جدد إليه. نحن مستمرون في العمل بجد حتى يتم الانتهاء منه بالكامل وتقديمه لكم بأفضل شكل.
-                    </p>
-                    <div class="text-right">
-                        <a href="javascript:void(0)" class="text-yellow-400 hover:underline font-semibold" aria-label="اقرأ المزيد عن مصير التعريب">اقرأ المزيد →</a>
-                    </div>
-                </div>
-                
-                <div class="content-block-bg rounded-xl p-6 card" style="--delay: 2">
-                    <h3 class="text-xl font-bold text-blue-300 mb-3"> أخبار التعريب الآن</h3>
-                    <p class="text-gray-300 mb-4 text-justify">
-                        تم الانتهاء من مهارات التحول وبعض مهارات جزء عامر والفرسان ولم يتبق إلا القليل. النصوص داخل اللعبة جارٍ ترجمتها يدوياً من قبل مترجمين متخصصين في فريق التعريب.
-                    </p>
-                    <div class="text-right">
-                        <a href="javascript:void(0)" class="text-yellow-400 hover:underline font-semibold" aria-label="اقرأ المزيد عن آخر أخبار التعريب">اقرأ المزيد →</a>
+                    <div class="download-section bg-gray-900 rounded-lg p-6 md:p-8 shadow-inner flex flex-col md:flex-row items-center justify-center gap-6 mt-10 animate-fade-in-up">
+                        <h2 class="text-3xl md:text-4xl font-bold text-teal-400 mb-4 md:mb-0 md:mr-6">
+                            جاهز للتحميل؟
+                        </h2>
+                        <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+                            <button id="download-v1-btn" class="btn-primary flex items-center justify-center">
+                                <i class="fas fa-download ml-2"></i> تحميل النسخة التجريبية V1
+                            </button>
+                            <button id="download-full-btn" class="btn-secondary flex items-center justify-center">
+                                <i class="fas fa-star ml-2"></i> تحميل النسخة الكاملة
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="videos-section" class="mb-12 hidden">
-            <h2 class="section-title text-center mb-8">فيديوهات IEGO</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="content-block-bg rounded-xl p-4 shadow-md card" style="--delay: 0">
-                    <div class="video-container mb-4">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" 
-                                title="فيديو شرح إضافة التعريب للكمبيوتر" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                allowfullscreen>
-                        </iframe>
+        <section id="project-news-section" class="py-20 md:py-32 hidden section-transition">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-center mb-12 animate-fade-in">أخبار المشروع</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card content-block-bg rounded-lg shadow-xl p-6 transform hover:scale-105 transition-transform duration-300 animate-slide-in-right">
+                        <img src="https://i.postimg.cc/prg73qf2/image.jpg" alt="تحديث جديد للتعريب" class="rounded-lg mb-4 w-full h-48 object-cover">
+                        <h3 class="text-2xl font-bold text-teal-400 mb-3">إطلاق النسخة التجريبية V1</h3>
+                        <p class="text-gray-300 mb-4">
+                            تم إطلاق النسخة التجريبية الأولى من تعريب Inazuma Eleven GO Strikers 2013! تحتوي هذه النسخة على ترجمة القوائم الأساسية وأول فصل من طور القصة. ننتظر آراءكم وملاحظاتكم.
+                        </p>
+                        <span class="text-gray-500 text-sm">تاريخ النشر: 15 مارس 2024</span>
                     </div>
-                    <h3 class="text-xl font-bold text-blue-300 mb-2">إضافة التعريب للكمبيوتر</h3>
-                    <p class="text-gray-300 text-justify">
-                        شاهد هذا الفيديو من قناة صديقنا أحمد عمران وهو يشرح طريقة إضافة التعريب على الكمبيوتر خطوة بخطوة.
-                    </p>
-                </div>
-                
-                <div class="content-block-bg rounded-xl p-4 shadow-md card" style="--delay: 1">
-                    <div class="video-container mb-4">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" 
-                                title="فيديو شرح إضافة التعريب للهواتف" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                allowfullscreen>
-                        </iframe>
+                    <div class="card content-block-bg rounded-lg shadow-xl p-6 transform hover:scale-105 transition-transform duration-300 animate-slide-in-up">
+                        <img src="https://i.postimg.cc/TwfQ409P/image.jpg" alt="فريق العمل يجتمع" class="rounded-lg mb-4 w-full h-48 object-cover">
+                        <h3 class="text-2xl font-bold text-teal-400 mb-3">تقدم كبير في ترجمة الحوارات</h3>
+                        <p class="text-gray-300 mb-4">
+                            بفضل جهود فريق الترجمة، حققنا تقدمًا هائلاً في ترجمة حوارات القصة الرئيسية. نتوقع الانتهاء من الترجمة بالكامل في غضون الأشهر القليلة القادمة.
+                        </p>
+                        <span class="text-gray-500 text-sm">تاريخ النشر: 10 أبريل 2024</span>
                     </div>
-                    <h3 class="text-xl font-bold text-blue-300 mb-2">إضافة التعريب للهواتف</h3>
-                    <p class="text-gray-300 text-justify">
-                        في هذا الفيديو شرحت لكم طريقة إضافة التعريب لأجهزة الأندرويد لتبدأوا اللعب على الفور.
-                    </p>
-                </div>
-                
-                <div class="content-block-bg rounded-xl p-4 shadow-md card" style="--delay: 2">
-                    <div class="video-container mb-4">
-                        <img src="https://placehold.co/1280x720/1E40AF/FDE047?text=قريباً+فيديو+جديد" alt="صورة توضيحية لفيديو قادم عن أبرز الميزات الجديدة" class="w-full h-full object-cover rounded-md">
+                    <div class="card content-block-bg rounded-lg shadow-xl p-6 transform hover:scale-105 transition-transform duration-300 animate-slide-in-left">
+                        <img src="https://i.postimg.cc/QxzG1yP7/image.jpg" alt="لقطات شاشة جديدة" class="rounded-lg mb-4 w-full h-48 object-cover">
+                        <h3 class="text-2xl font-bold text-teal-400 mb-3">معاينة حصرية: لقطات شاشة من التعريب</h3>
+                        <p class="text-gray-300 mb-4">
+                            نشارك معكم بعض اللقطات الحصرية من النسخة المعربة الجديدة! ترقبوا المزيد من الصور والفيديوهات قريبًا على قناتنا الرسمية.
+                        </p>
+                        <span class="text-gray-500 text-sm">تاريخ النشر: 5 مايو 2024</span>
                     </div>
-                    <h3 class="text-xl font-bold text-blue-300 mb-2">قريباً:   </h3>
-                    <p class="text-gray-300 text-justify">
-                          
-                    </p>
-                </div>
-                
-                <div class="content-block-bg rounded-xl p-4 shadow-md card" style="--delay: 3">
-                    <div class="video-container mb-4">
-                        <img src="https://placehold.co/1280x720/1E40AF/FDE047?text=قريباً+نصائح+وحيل" alt="صورة توضيحية لفيديو قادم عن نصائح وحيل للتعريب" class="w-full h-full object-cover rounded-md">
-                    </div>
-                    <h3 class="text-xl font-bold text-blue-300 mb-2">قريباً:  </h3>
-                    <p class="text-gray-300 text-justify">
-                    </p>
                 </div>
             </div>
         </section>
 
-        <section id="team-section" class="mb-12 hidden">
-            <h2 class="section-title text-center mb-8">فريق عمل IEGO</h2>
-            <div class="content-block-bg rounded-2xl p-8 shadow-xl overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-700 team-table">
-                    <thead class="bg-gray-800">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-blue-300 uppercase tracking-wider rounded-tr-lg">
-                                الاسم
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-blue-300 uppercase tracking-wider rounded-tl-lg">
-                                المهنة
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-700">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">fares(GS)</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">فوتوشوب - تعديل نصوص اللعبة - وكل شيء في المشروع - مطور الموقع</td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">أحمد عمران</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">مروج أساسي للمشروع</td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">سلاما</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">فوتوشوب</td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">ميل</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">فوتوشوب - مترجم - معدل نصوص اللعبة</td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">مريم</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">مترجم</td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">عبدالله</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">مترجم</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">مهدي</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">فوتوشوب</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <section id="videos-section" class="py-20 md:py-32 hidden section-transition">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-center mb-12 animate-fade-in">فيديوهات المشروع</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <div class="video-container content-block-bg rounded-lg shadow-xl p-6 animate-fade-in-up">
+                        <div class="aspect-w-16 aspect-h-9 mb-4">
+                            <iframe class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <h3 class="text-2xl font-bold text-teal-400 mb-3">استعراض النسخة التجريبية V1</h3>
+                        <p class="text-gray-300">
+                            شاهدوا استعراضًا تفصيليًا للنسخة التجريبية الأولى من تعريب اللعبة، وما تحتويه من قوائم مترجمة وحوارات.
+                        </p>
+                    </div>
+                    <div class="video-container content-block-bg rounded-lg shadow-xl p-6 animate-fade-in-up">
+                        <div class="aspect-w-16 aspect-h-9 mb-4">
+                            <iframe class="w-full h-full rounded-lg" src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <h3 class="text-2xl font-bold text-teal-400 mb-3">مقتطفات من حوارات القصة</h3>
+                        <p class="text-gray-300">
+                            نظرة خاطفة على بعض حوارات القصة المترجمة حديثًا، وكيف تبدو داخل اللعبة.
+                        </p>
+                    </div>
+                </div>
             </div>
-            
-            <div class="mt-10 text-center">
-                <p class="text-xl text-blue-300 mb-4">هل ترغب بالانضمام لفريق التعريب؟</p>
-                <a href="https://discord.gg/Fq9g7kYw" target="_blank" class="btn-primary px-6 py-3 inline-block" aria-label="تقديم طلب الانضمام لفريق التعريب عبر ديسكورد">تقديم طلب الانضمام</a>
+        </section>
+
+        <section id="team-section" class="py-20 md:py-32 hidden section-transition">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-center mb-12 animate-fade-in">فريق العمل</h2>
+                <div class="content-block-bg rounded-lg shadow-xl p-6 md:p-8 animate-fade-in-up">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-gray-900 rounded-lg text-left whitespace-nowrap team-table">
+                            <thead>
+                                <tr class="bg-gray-700 text-gray-200">
+                                    <th class="py-3 px-4 rounded-tr-lg rounded-br-lg">الدور</th>
+                                    <th class="py-3 px-4">الاسم</th>
+                                    <th class="py-3 px-4 rounded-tl-lg rounded-bl-lg">جهة الاتصال / رابط</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-700 hover:bg-gray-700 transition-colors duration-200">
+                                    <td class="py-3 px-4 text-yellow-400 font-semibold">مؤسس المشروع والمترجم الرئيسي</td>
+                                    <td class="py-3 px-4">محمد السيد (M.ELSAYED)</td>
+                                    <td class="py-3 px-4"><a href="mailto:email@example.com" class="text-blue-400 hover:underline">contact@mohamed.com</a></td>
+                                </tr>
+                                <tr class="border-b border-gray-700 hover:bg-gray-700 transition-colors duration-200">
+                                    <td class="py-3 px-4 text-blue-400 font-semibold">مطور الويب</td>
+                                    <td class="py-3 px-4">أحمد علي</td>
+                                    <td class="py-3 px-4"><a href="https://github.com/ahmedali" target="_blank" class="text-blue-400 hover:underline">GitHub/ahmedali</a></td>
+                                </tr>
+                                <tr class="border-b border-gray-700 hover:bg-gray-700 transition-colors duration-200">
+                                    <td class="py-3 px-4 text-green-400 font-semibold">مراجع لغوي</td>
+                                    <td class="py-3 px-4">فاطمة الزهراء</td>
+                                    <td class="py-3 px-4">غير متاح حالياً</td>
+                                </tr>
+                                <tr class="hover:bg-gray-700 transition-colors duration-200">
+                                    <td class="py-3 px-4 text-purple-400 font-semibold">مصمم الرسوميات</td>
+                                    <td class="py-3 px-4">يوسف خالد</td>
+                                    <td class="py-3 px-4"><a href="#" class="text-blue-400 hover:underline">Portfolio (قريباً)</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <div id="floating-message-modal" class="floating-message-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
-        <div class="floating-message-content">
-            <button id="close-message-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 text-2xl font-bold" aria-label="إغلاق الرسالة المنبثقة">×</button>
-            <p id="modal-title" class="text-3xl md:text-4xl font-bold text-blue-300 mb-4">اقتربت تلك النسخة!</p>
-            <p id="modal-description" class="text-xl md:text-2xl text-gray-300">قريباً ستكون النسخة الكاملة متاحة بين أيديكم.</p>
-            <div class="mt-6">
-                <button class="btn-secondary px-6 py-2" id="notify-me-btn" aria-label="أخبرني عند إصدار النسخة الكاملة">أخبرني عند الإصدار</button>
-            </div>
+    <div id="floating-message-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 opacity-0 invisible transition-opacity duration-300">
+        <div class="floating-message-content bg-gray-800 p-8 rounded-lg shadow-2xl text-center relative max-w-md w-full animate-scale-in">
+            <button id="close-message-btn" class="absolute top-4 left-4 text-gray-400 hover:text-white text-3xl focus:outline-none">
+                <i class="fas fa-times"></i>
+            </button>
+            <i class="fas fa-exclamation-triangle text-yellow-500 text-5xl mb-5 animate-bounce-icon"></i>
+            <h3 class="text-3xl font-bold text-white mb-4">النسخة الكاملة قريباً!</h3>
+            <p class="text-gray-300 text-lg mb-6">
+                النسخة الكاملة من تعريب اللعبة قيد التطوير حالياً وستكون متاحة للتحميل في أقرب وقت ممكن.
+            </p>
+            <p class="text-gray-400 text-md mb-8">
+                تابعونا على قنوات التواصل الاجتماعي أو اضغط على "أخبرني عند الإصدار" لتلقي التحديثات!
+            </p>
+            <button id="notify-me-btn" class="btn-primary w-full py-3">
+                أخبرني عند الإصدار
+            </button>
         </div>
     </div>
 
-    <a href="https://discord.gg/tjkDUHZucy" target="_blank" rel="noopener noreferrer" class="discord-fab" aria-label="انضم إلى خادم ديسكورد الخاص بنا">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M20.3,4.1c-1.6-0.7-3.3-1.2-5-1.4c-0.2,0.4-0.5,0.9-0.7,1.3c-1.8-0.3-3.5-0.3-5.2,0C9.1,3.6,8.9,3.1,8.6,2.7
-            C6.9,2.9,5.3,3.4,3.7,4.1C0.5,9.5-0.4,14.7,0.1,19.9c1.9,1.4,4,2.5,6.1,3.2c0.5-0.7,0.9-1.4,1.3-2.1c-0.7-0.3-1.4-0.6-2-1
-            c0.2-0.1,0.4-0.3,0.6-0.4c4.8,2.3,10.1,2.3,14.9,0c0.2,0.1,0.4,0.3,0.6,0.4c-0.7,0.4-1.4,0.7-2.1,1c0.4,0.7,0.8,1.5,1.3,2.1
-            c2.1-0.7,4.2-1.8,6.1-3.2C24.4,14.7,23.5,9.5,20.3,4.1z M8,15.9c-1.1,0-2-1.1-2-2.4s0.9-2.4,2-2.4s2,1.1,2,2.4S9.1,15.9,8,15.9z
-            M16,15.9c-1.1,0-2-1.1-2-2.4s0.9-2.4,2-2.4s2,1.1,2,2.4S17.1,15.9,16,15.9z"/>
+    <a href="YOUR_DISCORD_INVITE_LINK" target="_blank" class="discord-fab fixed bottom-6 left-6 bg-purple-700 text-white p-4 rounded-full shadow-lg hover:bg-purple-800 transition-all duration-300 z-40 transform hover:scale-110 animate-pulse-discord" aria-label="انضم إلى سيرفر ديسكورد">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.22 0H3.78A3.78 3.78 0 0 0 0 3.78v16.44A3.78 3.78 0 0 0 3.78 24h16.44A3.78 3.78 0 0 0 24 20.22V3.78A3.78 3.78 0 0 0 20.22 0zM17.4 17.6c-.6.3-1.2.6-1.8.8-.9.2-1.7.3-2.6.3-.9 0-1.8-.1-2.6-.3-.6-.2-1.2-.5-1.8-.8-2-.8-3.4-2.2-4.2-4.2-.2-.5-.3-1-.3-1.5 0-.5.1-.9.3-1.4.6-1.5 1.7-2.6 3.1-3.4.8-.4 1.7-.7 2.6-.9.9-.2 1.8-.3 2.8-.3s1.9.1 2.8.3c.9.2 1.8.5 2.6.9 1.4.8 2.5 1.9 3.1 3.4.2.5.3.9.3 1.4 0 .5-.1 1-.3 1.5-.8 2-2.2 3.4-4.2 4.2zm-2.4-5.3c-1 0-1.8-.9-1.8-1.9s.8-1.9 1.8-1.9 1.8.9 1.8 1.9-.8 1.9-1.8 1.9zm-4.8 0c-1 0-1.8-.9-1.8-1.9s.8-1.9 1.8-1.9 1.8.9 1.8 1.9-.8 1.9-1.8 1.9z"/>
         </svg>
     </a>
 
