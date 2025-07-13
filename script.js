@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (hamburgerBtn && mobileNav) {
         hamburgerBtn.addEventListener('click', () => {
-            mobileNav.classList.remove('translate-x-full'); // إظهار القائمة
+            mobileNav.classList.remove('translate-x-full'); // إظهار القائمة بتحريكها إلى الداخل
             mobileNav.classList.add('translate-x-0');
             document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
         });
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (closeBtn && mobileNav) {
         closeBtn.addEventListener('click', () => {
-            mobileNav.classList.remove('translate-x-0'); // إخفاء القائمة
+            mobileNav.classList.remove('translate-x-0'); // إخفاء القائمة بتحريكها إلى الخارج
             mobileNav.classList.add('translate-x-full');
             document.body.style.overflow = ''; // السماح بالتمرير مرة أخرى
         });
@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (navLinksInMobile) {
             navLinksInMobile.forEach(link => {
                 link.addEventListener('click', () => {
-                    // تأكد من أننا على شاشة موبايل قبل إغلاق القائمة
-                    if (window.innerWidth <= 768) { // 768px هو breakpoint الـ md في Tailwind
+                    // تأكد من أننا على شاشة موبايل قبل إغلاق القائمة (باستخدام نفس breakpoint Tailwind CSS)
+                    if (window.innerWidth <= 768) { 
                         mobileNav.classList.remove('translate-x-0'); // إخفاء القائمة
                         mobileNav.classList.add('translate-x-full');
                         document.body.style.overflow = ''; // السماح بالتمرير مرة أخرى
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'team': document.getElementById('team-section')
     };
 
-    let currentActiveSection = 'home-section'; // استخدم الـ ID كقيمة أولية
+    let currentActiveSectionId = 'home-section'; // استخدم الـ ID كقيمة أولية
     // تأكد من عرض القسم الافتراضي عند تحميل الصفحة
     if (sections['home']) { // استخدم 'home' كـ key هنا
         sections['home'].classList.remove('hidden');
@@ -113,7 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const targetSectionId = this.getAttribute('data-section') + '-section'; // أضف '-section' للحصول على الـ ID الكامل
 
-            if (targetSectionId === currentActiveSection) {
+            // إذا كان القسم المستهدف هو نفسه القسم الحالي، قم فقط بالتمرير للأعلى
+            if (targetSectionId === currentActiveSectionId) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 return;
             }
@@ -123,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // إضافة فئة 'active-link' للرابط الذي تم النقر عليه
             this.classList.add('active-link');
 
-            const previousSection = sections[currentActiveSection.replace('-section', '')];
+            const previousSection = sections[currentActiveSectionId.replace('-section', '')];
             const nextSection = sections[targetSectionId.replace('-section', '')];
 
             if (previousSection) {
@@ -132,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 previousSection.classList.remove('section-transition-enter-active');
 
                 // الانتظار حتى انتهاء أنيميشن الخروج قبل إظهار القسم الجديد
+                // استخدام {once: true} لضمان أن الـ event listener يتم تشغيله مرة واحدة فقط
                 previousSection.addEventListener('transitionend', function handler() {
                     previousSection.classList.add('hidden');
                     previousSection.removeEventListener('transitionend', handler); // إزالة الـ event listener بعد الاستخدام
@@ -140,24 +142,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (nextSection) {
                         nextSection.classList.remove('hidden');
                         nextSection.classList.add('section-transition-enter-active');
-                        nextSection.classList.remove('section-transition-exit-active');
-                        animateOnScroll();
+                        nextSection.classList.remove('section-transition-exit-active'); // تأكد من إزالة هذا الكلاس
+                        animateOnScroll(); // لتشغيل أنيميشن عناصر القسم الجديد
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
-                    currentActiveSection = targetSectionId; // تحديث القسم النشط بعد ظهور الجديد
-                }, { once: true }); // استخدام {once: true} لضمان أن الـ event listener يتم تشغيله مرة واحدة فقط
+                    currentActiveSectionId = targetSectionId; // تحديث القسم النشط بعد ظهور الجديد
+                }, { once: true }); 
             } else {
                 // في حالة عدم وجود قسم سابق (أول تحميل للصفحة مثلاً)
                 if (nextSection) {
+                    // إخفاء جميع الأقسام الأخرى أولاً
                     Object.values(sections).forEach(section => {
-                        if (section) section.classList.add('hidden'); // التأكد من وجود القسم قبل إضافة الكلاس
+                        if (section) section.classList.add('hidden'); 
                     });
                     nextSection.classList.remove('hidden');
                     nextSection.classList.add('section-transition-enter-active');
                     animateOnScroll();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
-                currentActiveSection = targetSectionId;
+                currentActiveSectionId = targetSectionId;
             }
         });
     });
@@ -203,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // تفعيل الانتقال إلى قسم أخبار المشروع
             const projectNewsLink = document.querySelector('.nav-link[data-section="project-news"]');
             if (projectNewsLink) {
-                projectNewsLink.click();
+                projectNewsLink.click(); // محاكاة النقر على الرابط لتشغيل وظيفة التنقل
             }
         });
     }
