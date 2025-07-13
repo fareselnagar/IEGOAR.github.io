@@ -1,7 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // ========= وظائف قائمة الهامبرغر (الموبايل) =========
+    const hamburgerBtn = document.getElementById('hamburger-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    if (hamburgerBtn && mobileNav) {
+        hamburgerBtn.addEventListener('click', () => {
+            mobileNav.classList.remove('translate-x-full'); // إظهار القائمة
+            mobileNav.classList.add('translate-x-0');
+            document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+        });
+    }
+
+    if (closeBtn && mobileNav) {
+        closeBtn.addEventListener('click', () => {
+            mobileNav.classList.remove('translate-x-0'); // إخفاء القائمة
+            mobileNav.classList.add('translate-x-full');
+            document.body.style.overflow = ''; // السماح بالتمرير مرة أخرى
+        });
+    }
+
+    // إغلاق القائمة عند النقر على أي رابط داخلها (لتحسين تجربة المستخدم)
+    // يجب أن تكون mobileNav موجودة قبل محاولة البحث عن الروابط بداخلها
+    if (mobileNav) { 
+        const mobileNavLinks = mobileNav.querySelectorAll('.nav-link');
+        if (mobileNavLinks) {
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // تأكد من أننا على شاشة موبايل قبل إغلاق القائمة
+                    // يمكنك استخدام media query في JS أو التحقق من عرض الشاشة
+                    if (window.innerWidth <= 768) { // 768px هو breakpoint الـ md في Tailwind
+                        mobileNav.classList.remove('translate-x-0'); // إخفاء القائمة
+                        mobileNav.classList.add('translate-x-full');
+                        document.body.style.overflow = ''; // السماح بالتمرير مرة أخرى
+                    }
+                });
+            });
+        }
+    }
+
+
     // ========= إنشاء تأثير الجسيمات المتحركة في الخلفية =========
     function createParticles() {
         const particlesContainer = document.getElementById('particles');
+        if (!particlesContainer) return; // تأكد من وجود العنصر
         const particleCount = 60; // زيادة عدد الجسيمات لمظهر أكثر حيوية
         
         for (let i = 0; i < particleCount; i++) {
@@ -30,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========= إضافة أنيميشن للعناصر عند ظهورها أثناء التمرير =========
     function animateOnScroll() {
         // العناصر التي نريد إضافة أنيميشن لها عند التمرير
-        const elements = document.querySelectorAll('.section-title, .featured-box, .download-section, .card');
+        const elements = document.querySelectorAll('.section-title, .featured-box, .download-section, .card, .video-container, .team-table'); // أضفنا عناصر جديدة
         
         elements.forEach(element => {
             const elementTop = element.getBoundingClientRect().top; // موقع العنصر بالنسبة لإطار العرض
@@ -64,6 +106,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (sections['home']) { // استخدم 'home' كـ key هنا
         sections['home'].classList.remove('hidden');
         sections['home'].classList.add('section-transition-enter-active');
+        // تأكد من أن الرابط الرئيسي نشط عند تحميل الصفحة
+        document.querySelector('.nav-link[data-section="home"]').classList.add('active-link');
     }
 
     navLinks.forEach(link => {
@@ -107,7 +151,9 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // في حالة عدم وجود قسم سابق (أول تحميل للصفحة مثلاً)
                 if (nextSection) {
-                    Object.values(sections).forEach(section => section.classList.add('hidden'));
+                    Object.values(sections).forEach(section => {
+                        if (section) section.classList.add('hidden'); // التأكد من وجود القسم قبل إضافة الكلاس
+                    });
                     nextSection.classList.remove('hidden');
                     nextSection.classList.add('section-transition-enter-active');
                     animateOnScroll();
@@ -125,26 +171,44 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             this.classList.remove('animate-pulse');
         }, 700); // تم تقليل التأخير ليتناسب مع أنيميشن النبض (0.7 ثانية)
+        // يمكنك هنا إضافة منطق التحميل الفعلي
+        // alert('بدء تحميل النسخة التجريبية V1...');
     });
 
-    document.getElementById('download-full-btn').addEventListener('click', function() {
-        // إظهار مودال الرسالة العائمة عند النقر على زر "النسخة الكاملة"
-        document.getElementById('floating-message-modal').classList.add('active');
-    });
+    const downloadFullBtn = document.getElementById('download-full-btn');
+    const floatingMessageModal = document.getElementById('floating-message-modal');
+    const closeMessageBtn = document.getElementById('close-message-btn');
+    const notifyMeBtn = document.getElementById('notify-me-btn');
 
-    document.getElementById('close-message-btn').addEventListener('click', function() {
-        // إخفاء مودال الرسالة العائمة عند النقر على زر الإغلاق
-        document.getElementById('floating-message-modal').classList.remove('active');
-    });
+    if (downloadFullBtn && floatingMessageModal) {
+        downloadFullBtn.addEventListener('click', function() {
+            // إظهار مودال الرسالة العائمة عند النقر على زر "النسخة الكاملة"
+            floatingMessageModal.classList.add('active');
+        });
+    }
+
+    if (closeMessageBtn && floatingMessageModal) {
+        closeMessageBtn.addEventListener('click', function() {
+            // إخفاء مودال الرسالة العائمة عند النقر على زر الإغلاق
+            floatingMessageModal.classList.remove('active');
+        });
+    }
     
     // زر "أخبرني عند الإصدار" - توجيه إلى قسم أخبار المشروع
-    document.getElementById('notify-me-btn').addEventListener('click', function() {
-        // إخفاء الرسالة المنبثقة
-        document.getElementById('floating-message-modal').classList.remove('active');
-        
-        // تفعيل الانتقال إلى قسم أخبار المشروع
-        document.querySelector('.nav-link[data-section="project-news"]').click();
-    });
+    if (notifyMeBtn) {
+        notifyMeBtn.addEventListener('click', function() {
+            // إخفاء الرسالة المنبثقة
+            if (floatingMessageModal) {
+                floatingMessageModal.classList.remove('active');
+            }
+            
+            // تفعيل الانتقال إلى قسم أخبار المشروع
+            const projectNewsLink = document.querySelector('.nav-link[data-section="project-news"]');
+            if (projectNewsLink) {
+                projectNewsLink.click();
+            }
+        });
+    }
     
     // ========= رسالة الترحيب التلقائية =========
     setTimeout(() => {
