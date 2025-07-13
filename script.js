@@ -21,14 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // إغلاق القائمة عند النقر على أي رابط داخلها (لتحسين تجربة المستخدم)
-    // يجب أن تكون mobileNav موجودة قبل محاولة البحث عن الروابط بداخلها
     if (mobileNav) { 
-        const mobileNavLinks = mobileNav.querySelectorAll('.nav-link');
-        if (mobileNavLinks) {
-            mobileNavLinks.forEach(link => {
+        const navLinksInMobile = mobileNav.querySelectorAll('.nav-link');
+        if (navLinksInMobile) {
+            navLinksInMobile.forEach(link => {
                 link.addEventListener('click', () => {
                     // تأكد من أننا على شاشة موبايل قبل إغلاق القائمة
-                    // يمكنك استخدام media query في JS أو التحقق من عرض الشاشة
                     if (window.innerWidth <= 768) { // 768px هو breakpoint الـ md في Tailwind
                         mobileNav.classList.remove('translate-x-0'); // إخفاء القائمة
                         mobileNav.classList.add('translate-x-full');
@@ -44,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function createParticles() {
         const particlesContainer = document.getElementById('particles');
         if (!particlesContainer) return; // تأكد من وجود العنصر
-        const particleCount = 60; // زيادة عدد الجسيمات لمظهر أكثر حيوية
+        const particleCount = 60; // عدد الجسيمات
         
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
@@ -72,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========= إضافة أنيميشن للعناصر عند ظهورها أثناء التمرير =========
     function animateOnScroll() {
         // العناصر التي نريد إضافة أنيميشن لها عند التمرير
-        const elements = document.querySelectorAll('.section-title, .featured-box, .download-section, .card, .video-container, .team-table'); // أضفنا عناصر جديدة
+        const elements = document.querySelectorAll('.section-title, .featured-box, .download-section, .card, .video-container, .team-table');
         
         elements.forEach(element => {
             const elementTop = element.getBoundingClientRect().top; // موقع العنصر بالنسبة لإطار العرض
