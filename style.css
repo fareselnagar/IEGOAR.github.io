@@ -20,6 +20,14 @@
     --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.6);
 }
 
+/* هذا الجزء الجديد/المعدل لضمان أن html و body يأخذان كامل ارتفاع الشاشة */
+html, body {
+    height: 100%; /* هذا مهم جداً ليعمل h-full في Tailwind */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* لمنع التمرير الأفقي */
+}
+
 /* أنماط الجسم والخلفية */
 body {
     font-family: 'Tajawal', 'Inter', sans-serif; /* استخدام خطوط Tajawal للعربية و Inter للإنجليزية */
@@ -28,13 +36,10 @@ body {
     background-attachment: fixed; /* تثبيت الخلفية عند التمرير */
     background-position: center center; /* توسيط الخلفية */
     color: var(--color-text-light); /* لون النص الافتراضي */
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* منع التمرير الأفقي */
     scroll-behavior: smooth; /* تمرير سلس عند النقر على الروابط */
     position: relative; /* لتحديد موضع تأثيرات الخلفية */
     /* مؤشر الماوس على شكل كرة قدم - تم تحسينه ليكون أكثر سلاسة */
-    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjRkZEMzAwIiBkPSJNMjU2IDUxMkEyNTYgMjU2IDAgMSAwIDI1NiAwYTI1NiAyNTYgMCAxIDAgMCA1MTJ6bTAtMzUyYTg0Ljg1OCA4NC44NTggMCAw endeavors 1NjlLMTYwIDIzMi41IDIzMi41IDE2MCAyNTYgMTYwYTE2MC41IDIyOS40IDAgMCAwIDAgMzIwYTE2MC41IDE2MC41IDAgMCAwIDAtMzIwem0wIDk2YTY0IDY0IDAg1MSAxIDAgMTI4IDY0IDY0IDAg1MSAxIDAtMTI4eiIvPjwvc3ZnPg==") 16 16, auto;
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjRkZEMzAwIiBkPSJNMjU2IDUxMkEyNTYgMjU2IDAgMSAwIDI1NiAwYTI1NiAyNTYgMCAxIDAgMCA1MTJ6bTAtMzUyYTg0Ljg1OCA4NC44NTggMCAw endeavors 1NjlLMTYwIDIzMi41IDIzMi41IDE2MCAyNTYgMTYwYTE2MC41IDIyOS40IDAgMCAwIDAgMzIwYTE2MC41IDE2MC41IDAgMCAwIDAtMzIwem0wIDk2YTY0IDY0IDAg11IDEgMCAxMjggNjQgNjQgMCA11IDEgMC0xMjh6Ii8+PC9zdmc+") 16 16, auto;
 }
 
 /* طبقة تراكب زجاجية لزيادة التباين على الخلفية وتأثير Glassmorphism */
