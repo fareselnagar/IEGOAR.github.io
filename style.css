@@ -35,7 +35,7 @@ body {
     scroll-behavior: smooth; /* تمرير سلس عند النقر على الروابط */
     position: relative; /* لتحديد موضع تأثيرات الخلفية */
     /* مؤشر الماوس على شكل كرة قدم - تم تحسينه ليكون أكثر سلاسة */
-    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjRkZEMzAwIiBkPSJNMjU2IDUxMkEyNTYgMjU2IDAgMSAwIDI1NiAwYTI1NiAyNTYgMCAxIDAgMCA1MTJ6bTAtMzUyYTg0Ljg1OCA4NC44NTggMCAw endeav 1NjlLMTYwIDIzMi41IDIzMi41IDE2MCAyNTYgMTYwYTE2MC41IDIyOS.4IDAgMCAwIDAgMzIwYTE2MC41IDE2MC41IDAgMCAwIDAtMzIwem0wIDk2YTY0IDY0IDAgMSAxIDAgMTI4IDY0IDY0IDAgMSAxIDAtMTI4eiIvPjwvc3ZnPg==") 16 16, auto;
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjRkZEMzAwIiBkPSJNMjU2IDUxMkEyNTYgMjU2IDAgMSAwIDI1NiAwYTI1NiAyNTYgMCAxIDAgMCA1MTJ6bTAtMzUyYTg0Ljg1OCA4NC44NTggMCAw endeav 1NjlLMTYwIDIzMi41IDIzMi41IDE2MCAyNTYgMTYwYTE2MC41IDIyOS40IDAgMCAwIDAgMzIwYTE2MC41IDE2MC41IDAgMCAwIDAtMzIwem0wIDk2YTY0IDY0IDAgMSAxIDAgMTI4IDY0IDY0IDAgMSAxIDAtMTI4eiIvPjwvc3ZnPg==") 16 16, auto;
 }
 
 /* طبقة تراكب زجاجية لزيادة التباين على الخلفية وتأثير Glassmorphism */
@@ -519,16 +519,30 @@ body::before {
     .header-logo {
         height: 60px;
     }
+
+    /* تعديلات على قائمة التنقل في الهواتف */
+    .header .container {
+        flex-direction: column; /* جعل الشعار وقائمة التنقل فوق بعض */
+        align-items: center;
+        text-align: center;
+    }
+
+    .header-logo {
+        margin-bottom: 1rem; /* مسافة تحت الشعار قبل قائمة التنقل */
+    }
     
     .nav-links-container {
-        gap: 1.2rem;
-        margin-top: 1.2rem;
+        gap: 1rem; /* مسافة أقل بين الروابط */
+        margin-top: 1.5rem; /* مسافة أكبر فوق الروابط */
+        flex-direction: column; /* جعل الروابط فوق بعض */
+        align-items: center; /* توسيط الروابط */
     }
     
     .nav-link {
         font-size: 1.2rem;
-        margin: 0;
+        margin: 0.5rem 0; /* مسافة رأسية بين الروابط */
         padding: 0.4rem;
+        width: fit-content; /* جعل الرابط يأخذ عرض محتواه فقط */
     }
     
     .featured-box {
@@ -547,6 +561,18 @@ body::before {
         padding: 2.2rem;
     }
     
+    /* تعديلات على الأزرار في قسم التحميل */
+    .download-section .flex-col.md\:flex-row {
+        flex-direction: column; /* جعل الأزرار فوق بعض */
+    }
+    .download-section .flex-col.md\:flex-row > * {
+        width: 100%; /* جعل كل زر يأخذ عرض 100% */
+        margin-bottom: 1rem; /* مسافة بين الأزرار */
+    }
+    .download-section .flex-col.md\:flex-row > *:last-child {
+        margin-bottom: 0; /* إزالة المسافة من آخر زر */
+    }
+
     .btn-primary, .btn-secondary {
         padding: 1rem 2.2rem; /* تم تصغير الحجم قليلاً هنا للهاتف المحمول */
         font-size: 1.1rem;
@@ -555,6 +581,7 @@ body::before {
         margin-bottom: 1.2rem;
     }
     
+    /* التأكد من أن الـ grid يعرض عمود واحد فقط */
     .grid-cols-1, .grid-cols-2, .grid-cols-3 {
         grid-template-columns: 1fr !important;
     }
