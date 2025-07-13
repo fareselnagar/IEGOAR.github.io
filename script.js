@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // ========= وظائف قائمة الهامبرغر (الموبايل) =========
+    // ========= وظائف قائمة الهامبرغر (الموبايل) - تم التحديث =========
     const hamburgerBtn = document.getElementById('hamburger-menu-btn');
     const closeBtn = document.getElementById('close-menu-btn');
     const mobileNav = document.getElementById('mobile-nav');
 
     if (hamburgerBtn && mobileNav) {
         hamburgerBtn.addEventListener('click', () => {
-            mobileNav.classList.remove('translate-x-full'); // إظهار القائمة بتحريكها إلى الداخل
-            mobileNav.classList.add('translate-x-0');
+            mobileNav.classList.remove('hidden', 'translate-x-full'); // أزل hidden و translate-x-full
+            mobileNav.classList.add('translate-x-0'); // أظهر القائمة
             document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
         });
     }
@@ -16,11 +16,16 @@ document.addEventListener('DOMContentLoaded', function() {
         closeBtn.addEventListener('click', () => {
             mobileNav.classList.remove('translate-x-0'); // إخفاء القائمة بتحريكها إلى الخارج
             mobileNav.classList.add('translate-x-full');
+            // أضف 'hidden' بعد انتهاء الانتقال لضمان عدم ظهورها
+            mobileNav.addEventListener('transitionend', function handler() {
+                mobileNav.classList.add('hidden');
+                mobileNav.removeEventListener('transitionend', handler); // إزالة الـ event listener بعد الاستخدام لمرة واحدة
+            }, { once: true }); // listener يعمل لمرة واحدة فقط
             document.body.style.overflow = ''; // السماح بالتمرير مرة أخرى
         });
     }
 
-    // إغلاق القائمة عند النقر على أي رابط داخلها (لتحسين تجربة المستخدم)
+    // إغلاق القائمة عند النقر على أي رابط داخلها (لتحسين تجربة المستخدم) - تم التحديث
     if (mobileNav) { 
         const navLinksInMobile = mobileNav.querySelectorAll('.nav-link');
         if (navLinksInMobile) {
@@ -30,6 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (window.innerWidth <= 768) { 
                         mobileNav.classList.remove('translate-x-0'); // إخفاء القائمة
                         mobileNav.classList.add('translate-x-full');
+                        // أضف 'hidden' بعد انتهاء الانتقال
+                        mobileNav.addEventListener('transitionend', function handler() {
+                            mobileNav.classList.add('hidden');
+                            mobileNav.removeEventListener('transitionend', handler);
+                        }, { once: true });
                         document.body.style.overflow = ''; // السماح بالتمرير مرة أخرى
                     }
                 });
