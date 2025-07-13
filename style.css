@@ -1,381 +1,556 @@
-/* Custom CSS */
-
-/* تعريف المتغيرات لألوان الثيم */
+/* ========= أنماط CSS العامة والمتغيرات - مستوحاة من Inazuma Eleven ========= */
+/* تعريف متغيرات CSS للألوان لسهولة التعديل والثبات، مع لوحة ألوان تعكس طابع اللعبة */
 :root {
-    --color-primary: #3b82f6; /* Blue 500 */
-    --color-secondary: #10b981; /* Emerald 500 */
-    --color-accent: #fcd34d; /* Yellow 300 */
-    --color-bg-dark: #1f2937; /* Gray 800 */
-    --color-bg-light: #374151; /* Gray 700 */
-    --color-text-light: #e5e7eb; /* Gray 200 */
-    --color-text-dark: #9ca3af; /* Gray 400 */
-    --glow-light: 0 0 10px rgba(60, 180, 255, 0.6);
-    --glow-soft: 0 0 5px rgba(252, 211, 77, 0.4);
+    --color-primary-blue: #0077B6; /* Deep Ocean Blue */
+    --color-primary-blue-light: #00B4D8; /* Vibrant Sky Blue */
+    --color-secondary-gold: #FFC300; /* Bright Gold */
+    --color-secondary-gold-light: #FFEA00; /* Electric Yellow */
+    --color-accent-cyan: #00F0FF; /* Neon Cyan */
+    --color-accent-cyan-light: #66FFFF; /* Lighter Neon Cyan */
+    --color-dark-bg: rgba(10, 20, 40, 0.95); /* Very Dark Blue with slight transparency */
+    --color-card-bg: rgba(15, 30, 55, 0.9); /* Dark Blue for cards */
+    --color-text-light: #E0F2F7; /* Light Blue-White */
+    --color-text-dark: #050d19; /* Dark text for contrast */
+
+    /* متغيرات قوة التوهج والظلال */
+    --glow-strong: 0 0 20px var(--color-accent-cyan), 0 0 35px var(--color-accent-cyan-light);
+    --glow-medium: 0 0 15px var(--color-accent-cyan), 0 0 25px var(--color-accent-cyan-light);
+    --glow-soft: 0 0 10px var(--color-accent-cyan), 0 0 15px var(--color-accent-cyan-light);
+    --shadow-deep: 0 15px 30px rgba(0, 0, 0, 0.6), 0 8px 15px rgba(0, 0, 0, 0.8);
+    --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.6);
 }
 
-/* الخطوط */
+/* أنماط الجسم والخلفية */
 body {
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Tajawal', 'Inter', sans-serif; /* استخدام خطوط Tajawal للعربية و Inter للإنجليزية */
+    background-image: url('image.png'); /* الصورة من ملفاتك المحلية على GitHub - تأكد من المسار الصحيح */
+    background-size: cover; /* تغطية كاملة للخلفية */
+    background-attachment: fixed; /* تثبيت الخلفية عند التمرير */
+    background-position: center center; /* توسيط الخلفية */
+    color: var(--color-text-light); /* لون النص الافتراضي */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* منع التمرير الأفقي */
+    scroll-behavior: smooth; /* تمرير سلس عند النقر على الروابط */
+    position: relative; /* لتحديد موضع تأثيرات الخلفية */
+    /* مؤشر الماوس على شكل كرة قدم - تم تحسينه ليكون أكثر سلاسة */
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjRkZEMzAwIiBkPSJNMjU2IDUxMkEyNTYgMjU2IDAgMSAwIDI1NiAwYTI1NiAyNTYgMCAxIDAgMCA1MTJ6bTAtMzUyYTg0Ljg1OCA4NC44NTggMCAw endeav 1NjlLMTYwIDIzMi41IDIzMi41IDE2MCAyNTYgMTYwYTE2MC41IDIyOS40IDAgMCAwIDAgMzIwYTE2MC41IDE2MC41IDAgMCAwIDAtMzIwem0wIDk2YTY0IDY0IDAgMSAxIDAgMTI4IDY0IDY0IDAgMSAxIDAtMTI4eiIvPjwvc3ZnPg==") 16 16, auto;
 }
 
-/* تنسيقات عامة للكونتينر */
-.container {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
-/* الخلفية المظللة للعناصر الرئيسية */
-.content-block-bg {
-    background-color: var(--color-bg-light); /* Darker gray background */
-}
-
-/* تأثير الجسيمات المتحركة في الخلفية */
-#particles {
-    position: fixed;
+/* طبقة تراكب زجاجية لزيادة التباين على الخلفية وتأثير Glassmorphism */
+body::before {
+    content: '';
+    position: fixed; /* Fixed to cover the entire viewport */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* تأكد من أنها في الخلفية */
-    overflow: hidden; /* لمنع ظهور scrollbars بسبب الجسيمات */
+    background-color: rgba(0, 0, 0, 0.6); /* طبقة داكنة شفافة */
+    backdrop-filter: blur(5px); /* تأثير ضبابي خفيف */
+    -webkit-backdrop-filter: blur(5px); /* دعم الويب كيت */
+    z-index: -2; /* أسفل الجسيمات مباشرة */
 }
 
-.particle {
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.1); /* جسيمات شفافة بيضاء */
-    border-radius: 50%;
-    animation: floatAndFade ease-in-out infinite;
-    box-shadow: var(--glow-soft);
+/* حاوية المحتوى الرئيسية */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
 }
 
-@keyframes floatAndFade {
-    0% {
-        transform: translateY(0) translateX(0) scale(1);
-        opacity: 0.2;
-    }
-    25% {
-        transform: translateY(-20%) translateX(10%) scale(1.1);
-        opacity: 0.4;
-    }
-    50% {
-        transform: translateY(-50%) translateX(-15%) scale(1.2);
-        opacity: 0.6;
-    }
-    75% {
-        transform: translateY(-80%) translateX(5%) scale(1.1);
-        opacity: 0.4;
-    }
-    100% {
-        transform: translateY(-100%) translateX(-10%) scale(1);
-        opacity: 0.2;
-    }
-}
-
-/* ===== الشريط العلوي (الهيدر) ===== */
-header.content-block-bg {
-    transition: all 0.3s ease;
-}
-
-.header-logo {
-    transition: height 0.3s ease;
-}
-
-.nav-link {
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    position: relative;
-    transition: color 0.3s ease, transform 0.2s ease;
-    display: inline-block; /* لضمان أن الخط السفلي يعمل بشكل صحيح */
-}
-
-.nav-link:hover {
-    color: var(--color-accent); /* لون مختلف عند المرور فوقه */
-    transform: translateY(-2px); /* تأثير رفع بسيط */
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px; /* Adjust as needed */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 5px;
-    background-color: var(--color-primary);
-    border-radius: 5px;
-    transition: width 0.3s ease;
-}
-
-.nav-link.active-link {
-    color: var(--color-primary); /* لون الرابط النشط */
-    text-shadow: var(--glow-light);
-}
-
-.nav-link.active-link::after {
-    width: 100%; /* عرض كامل للخط السفلي للرابط النشط */
-}
-
-/* ===== تنسيقات عامة للأقسام ===== */
-section {
-    min-height: calc(100vh - 90px); /* تقليل الارتفاع ليناسب الهيدر الأصغر */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4rem 0;
-}
-
+/* عنوان القسم الرئيسي */
 .section-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--color-accent);
-    margin-bottom: 4rem;
     position: relative;
-    display: inline-block; /* لجعل الخط السفلي يتبع عرض النص */
+    font-size: 4rem; /* حجم أكبر بكثير */
+    font-weight: 900; /* أكثر سمكًا */
+    color: var(--color-secondary-gold); /* لون ذهبي لامع */
+    text-shadow: 0 0 15px var(--color-secondary-gold), 0 0 30px var(--color-secondary-gold-light); /* توهج ذهبي قوي */
+    padding-bottom: 1rem; /* مسافة سفلية أكبر */
+    margin-bottom: 5rem; /* مسافة أكبر */
+    text-align: center;
+    letter-spacing: 3px; /* تباعد أكبر للحروف */
+    word-spacing: 6px;
+    opacity: 0; /* مخفي في البداية لتأثير الأنيميشن */
+    transform: translateY(70px); /* منزلق للأسفل في البداية */
+    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1.275); /* انتقال أسرع قليلاً */
 }
 
+/* حالة الأنيميشن لعنوان القسم */
+.section-title.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* خط أسفل عنوان القسم */
 .section-title::after {
     content: '';
     position: absolute;
-    bottom: -15px;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 180px; /* عرض أكبر */
+    height: 10px; /* سمك أكبر */
+    background: linear-gradient(90deg, var(--color-primary-blue-light), var(--color-accent-cyan), var(--color-primary-blue-light)); /* تدرج لوني */
+    border-radius: 9999px;
+    box-shadow: 0 0 30px var(--color-accent-cyan), 0 0 50px var(--color-accent-cyan-light); /* توهج كهربائي قوي */
+    transition: width 0.7s ease-in-out; /* أسرع قليلاً */
+}
+
+/* تأثير التكبير عند التحويم على خط العنوان */
+.section-title:hover::after {
+    width: 250px; /* عرض أكبر عند التحويم */
+}
+
+/* ===== الشريط العلوي (الهيدر) - تعديلات الهامبرغر ===== */
+header.content-block-bg {
+    transition: all 0.3s ease;
+    /* لجعل الشعار وزر الهامبرغر على نفس السطر في الجوال */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1.5rem; /* لتجنب تداخل الشعار مع حافة الشاشة */
+    padding-right: 1.5rem; /* لتجنب تداخل الهامبرغر مع حافة الشاشة */
+}
+
+/* القائمة الجانبية في وضع الجوال */
+#mobile-nav {
+    display: flex; /* لكي يعمل الـ flexbox داخلها */
+    flex-direction: column; /* لجعل الروابط فوق بعض */
+    align-items: center; /* توسيط الروابط أفقياً */
+    justify-content: center; /* توسيط الروابط عمودياً */
+    padding: 2rem 0; /* مساحة داخلية */
+    background-color: var(--color-dark-bg); /* استخدام لون خلفية متناسق */
+    border-left: 4px solid var(--color-primary-blue-light); /* حدود على اليسار */
+    z-index: 99; /* تأكد من أنها فوق كل شيء آخر */
+}
+
+/* زر الهامبرغر والإغلاق */
+#hamburger-menu-btn, #close-menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-light);
+    font-size: 2.5rem; /* حجم أكبر للأيقونات */
+    padding: 0.5rem;
+}
+
+/* إخفاء زر الإغلاق على الشاشات الكبيرة */
+@media (min-width: 769px) {
+    #close-menu-btn {
+        display: none !important;
+    }
+    #hamburger-menu-btn {
+        display: none !important;
+    }
+    /* إظهار قائمة التنقل العادية على الشاشات الكبيرة */
+    #mobile-nav {
+        position: static !important;
+        transform: translateX(0) !important;
+        width: auto !important;
+        height: auto !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        flex-direction: row !important; /* لروابط أفقية على الديسكتوب */
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 !important;
+    }
+}
+
+
+/* حاوية روابط التنقل */
+.nav-links-container {
+    display: flex;
+    gap: 3.5rem; /* مسافة أكبر بين الروابط */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* روابط التنقل */
+.nav-link {
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
+    position: relative;
+    padding: 0.8rem 0.6rem;
+    font-size: 1.4rem; /* حجم أكبر */
+    font-weight: 700;
+    margin: 0 1rem;
+    transform: translateZ(0);
+    text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+/* تأثير التحويم على روابط التنقل */
+.nav-link:hover {
+    color: var(--color-secondary-gold-light);
+    transform: translateY(-7px) scale(1.1); /* حركة وتكبير أكبر */
+    text-shadow: 0 0 20px var(--color-secondary-gold-light);
+}
+
+/* خط أسفل روابط التنقل */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 200px;
-    height: 10px;
-    background-color: var(--color-primary);
-    border-radius: 5px;
-    box-shadow: var(--glow-light);
+    width: 0;
+    height: 6px; /* سمك أكبر */
+    background: linear-gradient(90deg, var(--color-secondary-gold), var(--color-secondary-gold-light));
+    transition: width 0.5s ease-in-out; /* أسرع قليلاً */
+    border-radius: 9999px;
 }
 
-/* ===== قسم التحميل - الأزرار ===== */
-.btn-primary {
-    background-color: var(--color-primary);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-}
-
-.btn-primary:hover {
-    background-color: #2563eb; /* Blue 600 */
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
-}
-
-.btn-primary.animate-pulse {
-    animation: pulse 0.7s infinite alternate; /* تقليل المدة */
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); }
-    100% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(59, 130, 246, 0.7); }
-}
-
-.btn-secondary {
-    background-color: var(--color-secondary);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
-}
-
-.btn-secondary:hover {
-    background-color: #059669; /* Emerald 600 */
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
-}
-
-/* ===== قسم الفيديوهات ===== */
-.aspect-w-16 {
-    position: relative;
+/* تأثير التكبير عند التحويم على خط رابط التنقل */
+.nav-link:hover::after {
     width: 100%;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
 }
 
-.aspect-h-9 iframe {
+/* رابط التنقل النشط */
+.active-link {
+    color: var(--color-accent-cyan);
+    font-weight: 900; /* أكثر سمكًا */
+    text-shadow: 0 0 15px var(--color-accent-cyan), 0 0 30px var(--color-accent-cyan-light);
+}
+
+/* خط أسفل رابط التنقل النشط */
+.active-link::after {
+    content: '';
     position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-cyan-light));
+    box-shadow: 0 0 20px var(--color-accent-cyan);
+}
+
+/* خلفية كتل المحتوى */
+.content-block-bg {
+    background-color: var(--color-dark-bg); /* لون أغمق وأكثر تركيزًا */
+    border: 4px solid var(--color-primary-blue-light); /* حدود بلون أزرق كهربائي */
+    border-radius: 3rem; /* زوايا أكثر استدارة */
+    box-shadow: var(--shadow-deep), var(--glow-medium); /* ظلال وتوهج */
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
+}
+.content-block-bg:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-deep), var(--glow-strong);
+}
+
+/* بطاقات المحتوى */
+.card {
+    background-color: var(--color-card-bg); /* لون خلفية للبطاقة */
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
+    border: 3px solid var(--color-primary-blue); /* حدود بلون أزرق داكن */
+    border-radius: 2.5rem; /* زوايا أكثر استدارة */
+    opacity: 0; /* مخفي في البداية لتأثير الأنيميشن */
+    transform: translateY(80px) rotateX(10deg); /* منزلق للأسفل مع دوران خفيف */
+    transform-style: preserve-3d; /* لتأثير ثلاثي الأبعاد */
+    perspective: 1000px; /* لمنظور ثلاثي الأبعاد */
+}
+
+/* حالة الأنيميشن للبطاقات */
+.card.animate {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+    transition-delay: calc(var(--delay) * 0.2s); /* تأخير الأنيميشن بناءً على متغير CSS (أسرع قليلاً) */
+}
+
+/* تأثير التحويم على البطاقات (ميلان ثلاثي الأبعاد) */
+.card:hover {
+    transform: translateY(-15px) scale(1.05) rotateY(5deg); /* حركة أكبر مع ميلان ثلاثي الأبعاد */
+    box-shadow: var(--shadow-deep), var(--glow-soft);
+    border-color: var(--color-secondary-gold); /* تغيير لون الحدود عند التحويم */
+}
+
+/* الزر الأساسي */
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary-blue), var(--color-primary-blue-light));
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), var(--glow-soft); /* ظل أقوى وتوهج ناعم */
+    border: 4px solid var(--color-accent-cyan); /* حدود أكثر سمكًا بلون سيان */
+    color: white;
+    font-weight: bold;
+    padding: 1rem 2.5rem; /* تم تصغير الحجم قليلاً هنا */
+    border-radius: 9999px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
+/* تأثير ما قبل التحويم للزر الأساسي (توهج ولمعان) */
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%; /* يبدأ من خارج الزر أكثر */
     width: 100%;
     height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent); /* تأثير لمعان أقوى */
+    transition: left 0.7s ease-in-out; /* أسرع قليلاً */
+    z-index: -1;
+    transform: skewX(-30deg); /* ميلان أكبر للمعان */
+}
+
+/* تأثير التحويم على الزر الأساسي */
+.btn-primary:hover {
+    transform: translateY(-10px) scale(1.04); /* حركة أكبر */
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), var(--glow-strong); /* ظل وتوهج أكثر قوة */
+    border-color: var(--color-secondary-gold); /* تغيير لون الحدود */
+}
+
+/* تأثير ما بعد التحويم للزر الأساسي (اللمعان) */
+.btn-primary:hover::before {
+    left: 150%; /* يمر اللمعان عبر الزر بالكامل */
+}
+
+/* الزر الثانوي */
+.btn-secondary {
+    background: linear-gradient(135deg, var(--color-secondary-gold), var(--color-secondary-gold-light));
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), var(--glow-soft);
+    border: 4px solid var(--color-secondary-gold);
+    color: var(--color-text-dark); /* لون نص أغمق */
+    font-weight: bold;
+    padding: 1rem 2.5rem; /* تم تصغير الحجم قليلاً هنا */
+    border-radius: 9999px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-shadow: 0 0 8px rgba(255,255,255,0.8);
+}
+
+/* تأثير ما قبل التحويم للزر الثانوي (توهج) */
+.btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transition: left 0.7s ease-in-out; /* أسرع قليلاً */
+    z-index: -1;
+    transform: skewX(-30deg);
+}
+
+/* تأثير التحويم على الزر الثانوي */
+.btn-secondary:hover {
+    transform: translateY(-10px) scale(1.04);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), var(--glow-strong);
+    border-color: var(--color-primary-blue-light); /* تغيير لون الحدود */
+}
+
+/* تأثير ما بعد التحويم للزر الثانوي (اللمعان) */
+.btn-secondary:hover::before {
+    left: 150%;
+}
+
+/* تراكب الرسالة العائمة (المودال) */
+.floating-message-overlay {
+    background-color: rgba(0, 0, 0, 0.95); /* خلفية أغمق جداً */
+    position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100; /* طبقة أعلى */
+    opacity: 0; /* مخفي في البداية */
+    visibility: hidden; /* مخفي في البداية */
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
 }
 
-/* ===== قسم فريق العمل - الجدول ===== */
-.team-table {
-    direction: rtl; /* ضمان أن الجدول يتبع اتجاه RTL */
-}
-
-.team-table th {
-    white-space: nowrap; /* منع انقسام النص في رؤوس الأعمدة */
-}
-
-.team-table th:last-child,
-.team-table td:last-child {
-    text-align: left; /* جعل آخر عمود (جهة الاتصال) محاذيًا لليسار */
-}
-
-
-/* ===== رسالة الترحيب العائمة ===== */
-.fixed.bottom-8.right-8 {
-    transition: transform 1s ease-out, opacity 1s ease-out;
-}
-
-/* ===== رسالة المودال العائمة للنسخة الكاملة ===== */
-#floating-message-modal.active {
+/* حالة النشاط لتراكب الرسالة العائمة */
+.floating-message-overlay.active {
     opacity: 1;
     visibility: visible;
 }
 
+/* محتوى الرسالة العائمة */
 .floating-message-content {
-    animation: scaleIn 0.3s ease-out forwards;
+    animation: fadeInScale 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* أسرع قليلاً */
+    background-color: var(--color-dark-bg); /* لون خلفية متناسق */
+    border: 6px solid var(--color-secondary-gold); /* حدود أكثر سمكًا */
+    box-shadow: var(--shadow-deep), var(--glow-strong); /* ظلال أقوى وتوهج */
+    color: var(--color-text-light);
+    padding: 3.5rem; /* مساحة داخلية أكبر */
+    border-radius: 2.5rem; /* زوايا أكثر استدارة */
+    max-width: 750px;
+    text-align: center;
+    position: relative;
+    transform: scale(0.6); /* حجم أصغر في البداية لتأثير الأنيميشن */
+    opacity: 0; /* مخفي في البداية */
 }
 
-#floating-message-modal.active .floating-message-content {
-    animation: none; /* لمنع إعادة تشغيل الأنيميشن عند الفتح مرة أخرى */
-}
-
-/* إزالة الأنيميشن عند الإغلاق */
-#floating-message-modal:not(.active) .floating-message-content {
-    animation: scaleOut 0.3s ease-in forwards;
-}
-
-@keyframes scaleIn {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
+/* أنيميشن الظهور والتكبير للمودال */
+@keyframes fadeInScale {
     to {
-        transform: scale(1);
         opacity: 1;
-    }
-}
-
-@keyframes scaleOut {
-    from {
         transform: scale(1);
-        opacity: 1;
-    }
-    to {
-        transform: scale(0.8);
-        opacity: 0;
     }
 }
 
-/* أنيميشن لأيقونة التحذير في المودال */
-@keyframes bounce-icon {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-.animate-bounce-icon {
-    animation: bounce-icon 0.8s infinite;
-}
-
-/* ===== زر ديسكورد العائم (FAB) ===== */
-.discord-fab {
-    width: 5rem;
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    line-height: 1;
-    text-decoration: none;
-    z-index: 40;
-    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5); /* Shadow for Discord button */
+/* حاوية الفيديو */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* نسبة عرض إلى ارتفاع 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 1.5rem; /* زوايا أكثر استدارة */
+    border: 4px solid var(--color-accent-cyan);
+    box-shadow: var(--shadow-soft), var(--glow-soft);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
 }
 
-@keyframes pulse-discord {
-    0% { transform: scale(1); box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5); }
-    50% { transform: scale(1.08); box-shadow: 0 12px 30px rgba(124, 58, 237, 0.7); }
-    100% { transform: scale(1); box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5); }
-}
-.animate-pulse-discord {
-    animation: pulse-discord 2s infinite ease-in-out;
+/* تأثير التحويم على حاوية الفيديو */
+.video-container:hover {
+    transform: scale(1.05); /* تكبير أكبر */
+    box-shadow: var(--shadow-deep), var(--glow-medium);
 }
 
-
-/* ===== أنيميشن التمرير (Scroll Animations) ===== */
-.animate-fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-}
-.animate-fade-in.animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.animate-fade-in-up {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.animate-fade-in-up.animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.animate-slide-in-right {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.animate-slide-in-right.animate {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.animate-slide-in-left {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.animate-slide-in-left.animate {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-
-/* ===== أنيميشن الانتقال بين الأقسام ===== */
-.section-transition {
-    position: absolute; /* تجعل الأقسام تتداخل فوق بعضها البعض */
+/* iframe الفيديو داخل الحاوية */
+.video-container iframe, .video-container img {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    opacity: 0;
-    transform: translateY(20px); /* بداية التحريك */
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    height: 100%;
+    border: 0;
+    object-fit: cover; /* لضمان تغطية الصورة للحاوية */
 }
 
-.section-transition.hidden {
+/* زر ديسكورد العائم (FAB) */
+.discord-fab {
+    position: fixed;
+    bottom: 3rem;
+    left: 3rem;
+    background-color: #5865F2; /* لون ديسكورد الأصلي */
+    color: white;
+    border-radius: 9999px;
+    width: 6rem; /* حجم أكبر */
+    height: 6rem; /* حجم أكبر */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 15px 30px rgba(88, 101, 242, 0.7); /* ظل أقوى */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
+    z-index: 50;
+    border: 5px solid #7289DA; /* حدود أكثر سمكًا */
+    animation: pulse 1.5s infinite cubic-bezier(0.4, 0, 0.6, 1); /* أنيميشن نبض أسرع */
+}
+
+/* أنيميشن النبض لزر ديسكورد */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(88, 101, 242, 0.9); transform: scale(1); }
+    70% { box-shadow: 0 0 0 30px rgba(88, 101, 242, 0); transform: scale(1.1); }
+    100% { box-shadow: 0 0 0 0 rgba(88, 101, 242, 0); transform: scale(1); }
+}
+
+/* تأثير التحويم على زر ديسكورد */
+.discord-fab:hover {
+    transform: translateY(-12px) scale(1.15); /* حركة وتكبير أكبر */
+    box-shadow: 0 25px 50px rgba(88, 101, 242, 1);
+    background-color: #4f5cd8;
+    animation: none; /* إيقاف النبض عند التحويم */
+}
+
+/* أيقونة SVG داخل زر ديسكورد */
+.discord-fab svg {
+    width: 3rem; /* حجم أكبر للأيقونة */
+    height: 3rem;
+    fill: white;
+}
+
+/* إخفاء العناصر */
+.hidden {
     display: none;
 }
 
-.section-transition.section-transition-enter-active {
-    opacity: 1;
-    transform: translateY(0); /* نهاية التحريك */
-    position: static; /* ليعود إلى flow المستند */
+/* شعار الرأس */
+.header-logo {
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
+    animation: float 3s ease-in-out infinite; /* أنيميشن عائم أسرع */
 }
 
-.section-transition.section-transition-exit-active {
+/* أنيميشن العوم للشعار */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-18px); } /* حركة أكبر */
+    100% { transform: translateY(0px); }
+}
+
+/* تأثير التحويم على الشعار */
+.header-logo:hover {
+    animation: none;
+    transform: scale(1.2) rotate(15deg); /* تكبير ودوران أكبر */
+}
+
+/* الصندوق المميز (Hero Section) */
+.featured-box {
+    background: linear-gradient(135deg, var(--color-primary-blue), var(--color-primary-blue-light)); /* خلفية زرقاء كهربائية */
+    border-radius: 3rem;
+    box-shadow: var(--shadow-deep), var(--glow-strong); /* ظل أقوى وتوهج */
     opacity: 0;
-    transform: translateY(-20px); /* تحريك القسم السابق للأعلى */
-    transition: opacity 0.5s ease-in, transform 0.5s ease-in; /* أنيميشن خروج أسرع */
-    position: absolute; /* لكي يخرج من الـ flow */
+    transform: scale(0.8); /* حجم أصغر في البداية */
+    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
 }
 
+.featured-box.animate {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* قسم التحميل */
+.download-section {
+    background: linear-gradient(135deg, var(--color-dark-bg), var(--color-card-bg)); /* خلفية داكنة متناسقة */
+    border: 5px solid var(--color-secondary-gold); /* حدود بلون ذهبي */
+    opacity: 0;
+    transform: translateY(80px);
+    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
+}
+
+.download-section.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* أنماط جدول الفريق */
+.team-table tr:nth-child(even) {
+    background-color: rgba(26, 44, 66, 0.8); /* لون أغمق قليلاً */
+}
+
+.team-table tr {
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
+}
+
+.team-table tr:hover {
+    background-color: rgba(40, 60, 90, 0.95); /* لون أغمق عند التحويم */
+    transform: translateX(-25px); /* حركة أكبر */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6), var(--glow-soft);
+}
+
+/* أنيميشن النبض للأزرار (تمت إضافته ليعمل مع زر التحميل) */
+@keyframes button-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); } /* تكبير أكبر */
+    100% { transform: scale(1); }
+}
+
+.btn-primary.animate-pulse, .btn-secondary.animate-pulse {
+    animation: button-pulse 0.7s ease-in-out; /* أنيميشن أسرع قليلاً */
+}
 
 /* ===== تحسينات للهاتف المحمول (Media Queries) ===== */
 @media (max-width: 768px) {
@@ -393,89 +568,65 @@ section {
         height: 8px;
     }
     
-    /* --- تعديلات الشريط العلوي (الهيدر) والشعار في الجوال فقط --- */
+    /* إزالة الـ padding-top من الـ body على الجوال لتجنب المشاكل مع الشريط الثابت */
+    body {
+        padding-top: 0; 
+    }
+
+    /* تعديل الهيدر ليناسب الموبايل */
     header.content-block-bg {
         padding-top: 0.5rem; /* تقليل المساحة العلوية في الجوال */
         padding-bottom: 0.5rem; /* تقليل المساحة السفلية في الجوال */
     }
 
-    /* تعديل لمركزة الشعار وزر الهامبرغر على نفس السطر في الهواتف */
-    header .container {
-        flex-direction: row; /* جعل الشعار وزر الهامبرغر على نفس السطر */
-        justify-content: space-between; /* توزيع المسافة بينهما */
-        align-items: center; /* توسيط عمودي */
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
+    .header-logo {
+        height: 60px; /* تصغير حجم الشعار في الجوال */
+        animation: float-mobile 3s ease-in-out infinite; /* أنيميشن عائم خاص بالموبايل */
     }
 
-    .header-logo {
-        height: 50px; /* تصغير ارتفاع الشعار في الجوال */
-        margin-bottom: 0; /* إزالة الهامش السفلي */
+    /* أنيميشن عوم أصغر للشعار على الموبايل */
+    @keyframes float-mobile {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
     }
     
-    /* إخفاء روابط التنقل الافتراضية في وضع الهاتف */
+    /* قائمة التنقل داخل القائمة الجانبية في الجوال */
     .nav-links-container {
-        /* هذه الستايلات ستطبق على القائمة داخل القائمة الجانبية */
-        gap: 1rem; /* مسافة بين الروابط في القائمة الجانبية (أقل من السابق) */
-        margin-top: 0; /* إزالة الهامش العلوي */
-    }
-
-    /* إخفاء قائمة التنقل تمامًا في وضع الجوال افتراضيًا */
-    #mobile-nav {
-        display: flex; /* لكي يعمل الـ flexbox داخلها */
-        flex-direction: column; /* لجعل الروابط فوق بعض */
-        align-items: center; /* توسيط الروابط أفقياً */
-        justify-content: center; /* توسيط الروابط عمودياً */
-        padding: 2rem 0; /* مساحة داخلية */
+        gap: 1.5rem; /* مسافة بين الروابط في القائمة الجانبية */
+        flex-direction: column; /* لتبقى الروابط عمودية */
+        align-items: center; /* توسيط الروابط */
+        justify-content: center; /* توسيط الروابط عمودياً في القائمة الجانبية */
+        width: 100%; /* تأكد أن الحاوية تأخذ عرض القائمة الجانبية */
+        height: 100%; /* تأكد أن الحاوية تأخذ ارتفاع القائمة الجانبية */
+        padding-top: 4rem; /* مساحة من الأعلى لزر الإغلاق */
     }
     
     .nav-link {
-        font-size: 1.1rem; /* حجم خط مناسب للقائمة الجانبية (عاد للأصلي) */
-        margin: 0.5rem 0; /* مسافة رأسية بين الروابط (عاد للأصلي) */
-        padding: 0.5rem;
-        width: fit-content; /* جعل الرابط يأخذ عرض محتواه فقط */
+        font-size: 1.5rem; /* حجم خط أكبر لروابط القائمة الجانبية */
+        margin: 0.5rem 0; /* مسافة رأسية بين الروابط */
+        padding: 0.5rem 1rem; /* مساحة داخلية للروابط */
+        width: auto; /* يجعل الروابط تأخذ عرض محتواها */
+    }
+
+    .nav-link.active-link {
+        font-size: 1.6rem; /* تكبير بسيط للرابط النشط في القائمة الجانبية */
     }
     
-    .active-link {
-        font-size: 1.2rem; /* زيادة طفيفة للنشط بعد التصغير (عاد للأصلي) */
-    }
-
-    .active-link::after {
-        height: 4px; /* تصغير خط الرابط النشط */
-    }
-
-    /* زر الهامبرغر والإغلاق */
-    #hamburger-menu-btn {
-        display: block; /* إظهار زر الهامبرغر */
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: var(--color-text-light); /* لون أيقونة الهامبرغر */
-    }
-
-    #close-menu-btn {
-        display: block; /* إظهار زر الإغلاق في القائمة الجانبية */
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: var(--color-text-light); /* لون أيقونة الإغلاق */
-    }
-
-    /* تعديل الهوامش والأحجام العامة للمحتوى */
     .featured-box {
-        padding: 1.8rem; /* تقليل المساحة الداخلية للصندوق المميز */
+        padding: 2.2rem;
     }
     
     .featured-box h1 {
-        font-size: 2.2rem; /* تصغير حجم العنوان الرئيسي */
+        font-size: 2.5rem;
     }
     
     .featured-box p {
-        font-size: 1.1rem; /* تصغير حجم النص في الصندوق المميز */
+        font-size: 1.2rem;
     }
     
     .download-section {
-        padding: 1.8rem; /* تقليل المساحة الداخلية لقسم التحميل */
+        padding: 2.2rem;
     }
     
     /* تعديلات على الأزرار في قسم التحميل */
@@ -491,11 +642,11 @@ section {
     }
 
     .btn-primary, .btn-secondary {
-        padding: 0.8rem 1.8rem; /* تصغير حجم المساحة الداخلية للأزرار */
-        font-size: 1rem; /* تصغير حجم خط الأزرار */
+        padding: 1rem 2.2rem; /* تم تصغير الحجم قليلاً هنا للهاتف المحمول */
+        font-size: 1.1rem;
         display: block;
         width: 100%;
-        margin-bottom: 1rem; /* تقليل المسافة بين الأزرار */
+        margin-bottom: 1.2rem;
     }
     
     /* التأكد من أن الـ grid يعرض عمود واحد فقط */
@@ -504,89 +655,103 @@ section {
     }
     
     .video-container {
-        margin-bottom: 1.5rem; /* تقليل المسافة السفلية للفيديوهات */
+        margin-bottom: 1.8rem;
     }
     
     .team-table {
-        font-size: 0.9rem; /* تصغير حجم خط الجدول */
+        font-size: 0.95rem;
     }
     
     .team-table th, .team-table td {
-        padding: 0.7rem; /* تقليل المساحة الداخلية للخلايا */
+        padding: 0.8rem;
     }
     
     .floating-message-content {
-        padding: 2rem; /* تقليل المساحة الداخلية للمودال */
+        padding: 2.5rem;
         max-width: 95%;
     }
     
     .discord-fab {
-        width: 4rem; /* تصغير حجم زر ديسكورد */
-        height: 4rem;
-        bottom: 2rem; /* تقليل المسافة عن الأسفل */
-        left: 2rem; /* تقليل المسافة عن اليسار */
+        width: 5rem;
+        height: 5rem;
+        bottom: 2.5rem;
+        left: 2.5rem;
     }
     
     .discord-fab svg {
-        width: 1.8rem; /* تصغير أيقونة ديسكورد */
-        height: 1.8rem;
+        width: 2.2rem;
+        height: 2.2rem;
     }
 }
 
 @media (max-width: 480px) {
     .section-title {
-        font-size: 2.2rem; /* تصغير أكثر لعنوان القسم */
-        margin-bottom: 3rem;
+        font-size: 2.2rem;
     }
     
     .featured-box h1 {
-        font-size: 1.8rem; /* تصغير أكثر لعنوان الصندوق المميز */
+        font-size: 2rem;
     }
     
     .nav-links-container {
-        gap: 0.6rem; /* تقليل المسافة بين روابط التنقل */
+        gap: 1rem; /* تقليل المسافة في أصغر الشاشات */
     }
     
     .nav-link {
-        font-size: 1rem; /* تصغير حجم خط روابط التنقل أكثر */
-        margin: 0.2rem 0;
-        padding: 0.25rem;
-    }
-
-    .active-link {
-        font-size: 1.1rem;
+        font-size: 1.3rem; /* تصغير حجم خط روابط القائمة الجانبية أكثر */
+        margin: 0.3rem 0;
     }
     
     .featured-box, .download-section {
-        padding: 1.5rem; /* تقليل المساحة الداخلية أكثر */
-    }
-
-    .btn-primary, .btn-secondary {
-        padding: 0.7rem 1.5rem;
-        font-size: 0.95rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .discord-fab {
-        width: 3.5rem; /* تصغير زر ديسكورد أكثر */
-        height: 3.5rem;
-        bottom: 1.5rem;
-        left: 1.5rem;
-    }
-    
-    .discord-fab svg {
-        width: 1.6rem;
-        height: 1.6rem;
+        padding: 1.8rem;
     }
 }
 
-/* أخيراً وليس آخراً، لتجنب مشكلة تداخل المحتوى مع الهيدر الثابت */
-body {
-    padding-top: 90px; /* عاد إلى القيمة الأصلية قبل التعديل */
+/* تأثيرات الجسيمات المتحركة في الخلفية */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
 }
 
-@media (min-width: 769px) {
-    body {
-        padding-top: 90px; /* عاد إلى القيمة الأصلية قبل التعديل */
-    }
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 240, 255, 0.3); /* جسيمات بلون سيان كهربائي */
+    animation: floatParticle linear infinite;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.7); /* توهج للجسيمات */
+}
+
+/* أنيميشن الجسيمات */
+@keyframes floatParticle {
+    0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0.3; }
+    25% { transform: translateY(-25vh) translateX(30px) scale(1.0); opacity: 0.45; }
+    50% { transform: translateY(-50vh) translateX(60px) scale(1.2); opacity: 0.6; }
+    75% { transform: translateY(-75vh) translateX(30px) scale(1.0); opacity: 0.45; }
+    100% { transform: translateY(-100vh) translateX(0) scale(0.8); opacity: 0.3; }
+}
+
+/* أنيميشن انتقال الأقسام */
+/* هذه الأنيميشن لا تحتاج لتغيير لأنها تتعامل مع فئات إضافية/إزالة */
+.section-transition-enter {
+    opacity: 0;
+    transform: translateY(100px);
+}
+.section-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1), transform 1s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
+}
+.section-transition-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+.section-transition-exit-active {
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
 }
