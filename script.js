@@ -59,15 +59,19 @@ document.addEventListener('DOMContentLoaded', function() {
         'team': document.getElementById('team-section')
     };
 
-    let currentActiveSection = 'home'; // تتبع القسم النشط حالياً
+    let currentActiveSection = 'home-section'; // استخدم الـ ID كقيمة أولية
+    // تأكد من عرض القسم الافتراضي عند تحميل الصفحة
+    if (sections['home']) { // استخدم 'home' كـ key هنا
+        sections['home'].classList.remove('hidden');
+        sections['home'].classList.add('section-transition-enter-active');
+    }
 
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault(); // منع السلوك الافتراضي للرابط (الانتقال الفوري)
-            const targetSectionId = this.getAttribute('data-section'); // الحصول على اسم القسم المستهدف
+            e.preventDefault();
+            const targetSectionId = this.getAttribute('data-section') + '-section'; // أضف '-section' للحصول على الـ ID الكامل
 
             if (targetSectionId === currentActiveSection) {
-                // إذا كان القسم المستهدف هو نفسه القسم النشط، فقط قم بالتمرير لأعلى الصفحة
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 return;
             }
@@ -77,29 +81,40 @@ document.addEventListener('DOMContentLoaded', function() {
             // إضافة فئة 'active-link' للرابط الذي تم النقر عليه
             this.classList.add('active-link');
 
-            // إخفاء القسم الحالي بأنيميشن خروج
-            if (sections[currentActiveSection]) {
-                sections[currentActiveSection].classList.add('section-transition-exit-active');
-                sections[currentActiveSection].classList.remove('section-transition-enter-active');
-                // لا تخفي العنصر فورًا، دعه يختفي بالأنيميشن
+            const previousSection = sections[currentActiveSection.replace('-section', '')];
+            const nextSection = sections[targetSectionId.replace('-section', '')];
+
+            if (previousSection) {
+                // إعداد القسم الحالي لأنيميشن الخروج
+                previousSection.classList.add('section-transition-exit-active');
+                previousSection.classList.remove('section-transition-enter-active');
+
+                // الانتظار حتى انتهاء أنيميشن الخروج قبل إظهار القسم الجديد
+                previousSection.addEventListener('transitionend', function handler() {
+                    previousSection.classList.add('hidden');
+                    previousSection.removeEventListener('transitionend', handler); // إزالة الـ event listener بعد الاستخدام
+
+                    // إظهار القسم الجديد
+                    if (nextSection) {
+                        nextSection.classList.remove('hidden');
+                        nextSection.classList.add('section-transition-enter-active');
+                        nextSection.classList.remove('section-transition-exit-active');
+                        animateOnScroll();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                    currentActiveSection = targetSectionId; // تحديث القسم النشط بعد ظهور الجديد
+                }, { once: true }); // استخدام {once: true} لضمان أن الـ event listener يتم تشغيله مرة واحدة فقط
+            } else {
+                // في حالة عدم وجود قسم سابق (أول تحميل للصفحة مثلاً)
+                if (nextSection) {
+                    Object.values(sections).forEach(section => section.classList.add('hidden'));
+                    nextSection.classList.remove('hidden');
+                    nextSection.classList.add('section-transition-enter-active');
+                    animateOnScroll();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                currentActiveSection = targetSectionId;
             }
-
-            // إظهار القسم الجديد بأنيميشن دخول بعد فترة قصيرة
-            setTimeout(() => {
-                // إخفاء جميع الأقسام بعد انتهاء أنيميشن الخروج للقسم السابق
-                Object.values(sections).forEach(section => section.classList.add('hidden'));
-                // إظهار القسم المستهدف
-                sections[targetSectionId].classList.remove('hidden');
-                
-                // إضافة فئة أنيميشن الدخول
-                sections[targetSectionId].classList.add('section-transition-enter-active');
-                sections[targetSectionId].classList.remove('section-transition-exit-active');
-
-                // إعادة تشغيل أنيميشن التمرير للقسم الجديد
-                animateOnScroll();
-                window.scrollTo({ top: 0, behavior: 'smooth' }); // التمرير إلى أعلى الصفحة بسلاسة
-                currentActiveSection = targetSectionId; // تحديث القسم النشط
-            }, 850); // تم تقليل التأخير ليتناسب مع سرعة أنيميشن الخروج (0.8 ثانية + 50ms)
         });
     });
 
