@@ -23,7 +23,7 @@
 /* أنماط الجسم والخلفية */
 body {
     font-family: 'Tajawal', 'Inter', sans-serif; /* استخدام خطوط Tajawal للعربية و Inter للإنجليزية */
-    background-image: url('image.png'); /* الصورة من ملفاتك المحلية على GitHub - تأكد من المسار الصحيح */
+    background-image: url('image.png'); /* الصورة من ملفاتك المحلية - تأكد من المسار الصحيح */
     background-size: cover; /* تغطية كاملة للخلفية */
     background-attachment: fixed; /* تثبيت الخلفية عند التمرير */
     background-position: center center; /* توسيط الخلفية */
@@ -101,7 +101,7 @@ body::before {
     width: 250px; /* عرض أكبر عند التحويم */
 }
 
-/* ===== الشريط العلوي (الهيدر) - تعديلات الهامبرغر ===== */
+/* ===== الشريط العلوي (الهيدر) - تعديلات الهامبرغر والقائمة الجانبية ===== */
 header.content-block-bg {
     transition: all 0.3s ease;
     /* لجعل الشعار وزر الهامبرغر على نفس السطر في الجوال */
@@ -112,7 +112,7 @@ header.content-block-bg {
     padding-right: 1.5rem; /* لتجنب تداخل الهامبرغر مع حافة الشاشة */
 }
 
-/* القائمة الجانبية في وضع الجوال */
+/* القائمة الجانبية في وضع الجوال (تكون مخفية افتراضياً وتظهر بالترانسفورم) */
 #mobile-nav {
     display: flex; /* لكي يعمل الـ flexbox داخلها */
     flex-direction: column; /* لجعل الروابط فوق بعض */
@@ -134,22 +134,22 @@ header.content-block-bg {
     padding: 0.5rem;
 }
 
-/* إخفاء زر الإغلاق على الشاشات الكبيرة */
-@media (min-width: 769px) {
+/* إخفاء زر الهامبرغر وزر الإغلاق وإظهار القائمة الأفقية على الشاشات الكبيرة */
+@media (min-width: 769px) { /* هذا الـ breakpoint هو md في Tailwind */
     #close-menu-btn {
         display: none !important;
     }
     #hamburger-menu-btn {
         display: none !important;
     }
-    /* إظهار قائمة التنقل العادية على الشاشات الكبيرة */
+    /* إظهار قائمة التنقل العادية (الأفقية) على الشاشات الكبيرة */
     #mobile-nav {
-        position: static !important;
-        transform: translateX(0) !important;
-        width: auto !important;
-        height: auto !important;
-        background-color: transparent !important;
-        box-shadow: none !important;
+        position: static !important; /* إلغاء التثبيت */
+        transform: translateX(0) !important; /* إزالة التحويل */
+        width: auto !important; /* استعادة العرض التلقائي */
+        height: auto !important; /* استعادة الارتفاع التلقائي */
+        background-color: transparent !important; /* خلفية شفافة */
+        box-shadow: none !important; /* إزالة الظل */
         flex-direction: row !important; /* لروابط أفقية على الديسكتوب */
         justify-content: center !important;
         align-items: center !important;
@@ -736,7 +736,6 @@ header.content-block-bg {
 }
 
 /* أنيميشن انتقال الأقسام */
-/* هذه الأنيميشن لا تحتاج لتغيير لأنها تتعامل مع فئات إضافية/إزالة */
 .section-transition-enter {
     opacity: 0;
     transform: translateY(100px);
