@@ -127,6 +127,11 @@ header.content-block-bg {
     background-color: var(--color-dark-bg); /* استخدام لون خلفية متناسق */
     border-left: 4px solid var(--color-primary-blue-light); /* حدود على اليسار */
     z-index: 99; /* تأكد من أنها فوق كل شيء آخر */
+
+    /* التعديلات الجديدة لجعل القائمة تظهر من اليمين */
+    left: auto; /* إلغاء خاصية left إذا كانت موجودة */
+    right: 0; /* تثبيتها على الجانب الأيمن */
+    transform: translateX(100%); /* إخفائها بالكامل إلى اليمين */
 }
 
 /* زر الهامبرغر والإغلاق */
@@ -312,7 +317,7 @@ header.content-block-bg {
 
 /* تأثير ما بعد التحويم للزر الأساسي (اللمعان) */
 .btn-primary:hover::before {
-    left: 150%; /* يمر اللمعان عبر الزر بالكامل */
+    left: 150%;
 }
 
 /* الزر الثانوي */
