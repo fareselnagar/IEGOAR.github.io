@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>موقع تعريب Inazuma Eleven - بوابتك للعالم العربي للألعاب</title>
     
+    <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Google Fonts: Inter for general text, Tajawal for Arabic -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
     
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="text-gray-200">
@@ -22,14 +26,14 @@
                 <img src="https://i.postimg.cc/BbhQhm36/tex1-480x328-9ca897922bdd8865-6.png" alt="شعار موقع تعريب Inazuma Eleven Go Strikers" class="h-16 md:h-20 w-auto rounded-lg header-logo">
             </div>
             
+            <!-- Hamburger menu button, only visible on mobile (hidden on md and up) -->
             <button id="hamburger-menu-btn" class="md:hidden text-gray-200 focus:outline-none z-50">
                 <i class="fas fa-bars text-3xl"></i>
             </button>
 
-            <nav id="mobile-nav" class="hidden fixed top-0 right-0 h-full w-64 bg-gray-900 shadow-lg transform translate-x-full transition-transform duration-500 ease-in-out md:static md:flex md:w-auto md:h-auto md:bg-transparent md:shadow-none md:translate-x-0 md:flex md:items-center">
-                <button id="close-menu-btn" class="absolute top-4 left-4 text-gray-400 hover:text-white text-4xl md:hidden z-50">
-                    <i class="fas fa-times"></i>
-                </button>
+            <!-- Desktop Navigation (hidden on mobile, flex on md and up) -->
+            <!-- Renamed from mobile-nav to desktop-nav for clarity -->
+            <nav id="desktop-nav" class="hidden md:static md:flex md:w-auto md:h-auto md:bg-transparent md:shadow-none md:translate-x-0 md:flex md:items-center">
                 <div class="nav-links-container flex flex-col md:flex-row items-center justify-center h-full pt-16 md:pt-0">
                     <a href="#home" class="nav-link text-gray-200 active-link" data-section="home" aria-current="page">الرئيسية</a>
                     <a href="#project-news" class="nav-link text-gray-200" data-section="project-news">أخبار المشروع</a>
@@ -119,7 +123,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="content-block-bg rounded-xl p-4 shadow-md card" style="--delay: 0">
                     <div class="video-container mb-4">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" 
+                        <!-- Updated YouTube Video ID for the first video -->
+                        <iframe src="https://www.youtube.com/embed/reBlk5QpPH0?si=4q805WNo_w9J0ERc" 
                                 title="فيديو شرح إضافة التعريب للكمبيوتر" 
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -134,7 +139,8 @@
                 
                 <div class="content-block-bg rounded-xl p-4 shadow-md card" style="--delay: 1">
                     <div class="video-container mb-4">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" 
+                        <!-- Updated YouTube Video ID for the second video -->
+                        <iframe src="https://www.youtube.com/embed/FuEvd6rMqyg?si=_Zpw4QiE5B6aUACx" 
                                 title="فيديو شرح إضافة التعريب للهواتف" 
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -221,11 +227,17 @@
                 </table>
             </div>
             
-            <div class="mt-10 text-center">
-                <p class="text-xl text-blue-300 mb-4">هل ترغب بالانضمام لفريق التعريب؟</p>
-                <a href="https://discord.gg/tjkDUHZucy" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3 inline-flex items-center justify-center">
+            <div class="mt-10 text-center flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4 md:space-x-reverse">
+                <p class="text-xl text-blue-300 mb-4 md:mb-0">هل ترغب بالانضمام لفريق التعريب؟</p>
+                <!-- Existing Discord invitation link -->
+                <a href="https://discord.gg/9hd8dHfx" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3 inline-flex items-center justify-center">
                     <i class="fab fa-discord text-2xl mr-2"></i>
                     انضم إلى خادم ديسكورد
+                </a>
+                <!-- NEW: Join Request Button -->
+                <a href="https://discord.gg/9hd8dHfx" target="_blank" rel="noopener noreferrer" class="btn-secondary px-6 py-3 inline-flex items-center justify-center">
+                    <i class="fas fa-user-plus text-2xl mr-2"></i> <!-- Using a user-plus icon for "join request" -->
+                    طلب الانضمام
                 </a>
             </div>
         </section>
@@ -242,6 +254,23 @@
         </div>
     </div>
 
+    <!-- NEW Mobile Navigation Structure (hidden on desktop using md:hidden) -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/70 z-[90] opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out md:hidden"></div>
+
+    <nav id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-gray-900 shadow-lg z-[95] transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col p-6 md:hidden">
+        <button id="mobile-menu-close-btn" class="absolute top-4 left-4 text-gray-400 hover:text-white text-4xl focus:outline-none">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="flex flex-col items-center justify-center h-full gap-6">
+            <a href="#home" class="nav-link text-gray-200 active-link text-2xl" data-section="home">الرئيسية</a>
+            <a href="#project-news" class="nav-link text-gray-200 text-2xl" data-section="project-news">أخبار المشروع</a>
+            <a href="#videos" class="nav-link text-gray-200 text-2xl" data-section="videos">الفيديوهات</a>
+            <a href="#team" class="nav-link text-gray-200 text-2xl" data-section="team">فريق العمل</a>
+        </div>
+    </nav>
+
+    <!-- Link to external JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>
+
