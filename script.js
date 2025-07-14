@@ -1,52 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // ========= وظائف قائمة الهامبرغر (الموبايل) - تم التحديث =========
+    // ========= New Mobile Navigation Logic =========
     const hamburgerBtn = document.getElementById('hamburger-menu-btn');
-    const closeBtn = document.getElementById('close-menu-btn');
-    const mobileNav = document.getElementById('mobile-nav');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileMenuCloseBtn = document.getElementById('mobile-menu-close-btn');
+    const mobileNavLinks = mobileMenu ? mobileMenu.querySelectorAll('.nav-link') : []; // Check if mobileMenu exists
 
-    if (hamburgerBtn && mobileNav) {
-        hamburgerBtn.addEventListener('click', () => {
-            mobileNav.classList.remove('hidden', 'translate-x-full'); // أزل hidden و translate-x-full
-            mobileNav.classList.add('translate-x-0'); // أظهر القائمة
-            document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
-        });
-    }
-
-    if (closeBtn && mobileNav) {
-        closeBtn.addEventListener('click', () => {
-            mobileNav.classList.remove('translate-x-0'); // إخفاء القائمة بتحريكها إلى الخارج
-            mobileNav.classList.add('translate-x-full');
-            // أضف 'hidden' بعد انتهاء الانتقال لضمان عدم ظهورها
-            mobileNav.addEventListener('transitionend', function handler() {
-                mobileNav.classList.add('hidden');
-                mobileNav.removeEventListener('transitionend', handler); // إزالة الـ event listener بعد الاستخدام لمرة واحدة
-            }, { once: true }); // listener يعمل لمرة واحدة فقط
-            document.body.style.overflow = ''; // السماح بالتمرير مرة أخرى
-        });
-    }
-
-    // إغلاق القائمة عند النقر على أي رابط داخلها (لتحسين تجربة المستخدم) - تم التحديث
-    if (mobileNav) { 
-        const navLinksInMobile = mobileNav.querySelectorAll('.nav-link');
-        if (navLinksInMobile) {
-            navLinksInMobile.forEach(link => {
-                link.addEventListener('click', () => {
-                    // تأكد من أننا على شاشة موبايل قبل إغلاق القائمة (باستخدام نفس breakpoint Tailwind CSS)
-                    if (window.innerWidth <= 768) { 
-                        mobileNav.classList.remove('translate-x-0'); // إخفاء القائمة
-                        mobileNav.classList.add('translate-x-full');
-                        // أضف 'hidden' بعد انتهاء الانتقال
-                        mobileNav.addEventListener('transitionend', function handler() {
-                            mobileNav.classList.add('hidden');
-                            mobileNav.removeEventListener('transitionend', handler);
-                        }, { once: true });
-                        document.body.style.overflow = ''; // السماح بالتمرير مرة أخرى
-                    }
-                });
-            });
+    function openMobileMenu() {
+        if (mobileMenu && mobileMenuOverlay) {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scroll
         }
     }
 
+    function closeMobileMenu() {
+        if (mobileMenu && mobileMenuOverlay) {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = ''; // Allow background scroll
+        }
+    }
+
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', openMobileMenu);
+    }
+    if (mobileMenuCloseBtn) {
+        mobileMenuCloseBtn.addEventListener('click', closeMobileMenu);
+    }
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu); // Close when clicking outside menu
+    }
 
     // ========= إنشاء تأثير الجسيمات المتحركة في الخلفية =========
     function createParticles() {
@@ -80,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========= إضافة أنيميشن للعناصر عند ظهورها أثناء التمرير =========
     function animateOnScroll() {
         // العناصر التي نريد إضافة أنيميشن لها عند التمرير
-        const elements = document.querySelectorAll('.section-title, .featured-box, .download-section, .card, .video-container, .team-table');
+        const elements = document.querySelectorAll('.section-title, .card, .video-container, .team-table');
         
         elements.forEach(element => {
             const elementTop = element.getBoundingClientRect().top; // موقع العنصر بالنسبة لإطار العرض
@@ -88,11 +72,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // إذا كان العنصر ضمن منطقة الرؤية، أضف فئة 'animate'
             if (elementTop < window.innerHeight - elementVisible) {
-                element.classList.add('animate');
-            } else {
-                // إزالة فئة 'animate' إذا خرج العنصر من منطقة الرؤية (لإعادة الأنيميشن عند التمرير لأعلى وأسفل)
-                element.classList.remove('animate');
+                if (!element.classList.contains('animate')) {
+                    element.classList.add('animate');
+                }
             }
+            // لا تقم بإزالة فئة 'animate' هنا لضمان بقاء العناصر متحركة بمجرد ظهورها
         });
     }
     
@@ -101,7 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateOnScroll); // عند التمرير
 
     // ========= التنقل بين الأقسام وإظهارها/إخفائها بسلاسة =========
-    const navLinks = document.querySelectorAll('.nav-link');
+    // استهداف روابط التنقل لسطح المكتب (desktop-nav)
+    const desktopNavLinks = document.querySelectorAll('#desktop-nav .nav-link');
     const sections = {
         'home': document.getElementById('home-section'),
         'project-news': document.getElementById('project-news-section'),
@@ -115,10 +100,26 @@ document.addEventListener('DOMContentLoaded', function() {
         sections['home'].classList.remove('hidden');
         sections['home'].classList.add('section-transition-enter-active');
         // تأكد من أن الرابط الرئيسي نشط عند تحميل الصفحة
-        document.querySelector('.nav-link[data-section="home"]').classList.add('active-link');
+        document.querySelector('#desktop-nav .nav-link[data-section="home"]').classList.add('active-link');
+
+        // *** NEW: Ensure featured-box and download-section animate on initial load ***
+        const featuredBox = document.querySelector('#home-section .featured-box');
+        const downloadSection = document.querySelector('#home-section .download-section');
+        const downloadTitle = document.querySelector('#home-section .section-title'); // Added this line
+
+        if (featuredBox) {
+            featuredBox.classList.add('animate');
+        }
+        if (downloadSection) {
+            downloadSection.classList.add('animate');
+        }
+        if (downloadTitle) { // Added this block
+            downloadTitle.classList.add('animate');
+        }
+        // *************************************************************************
     }
 
-    navLinks.forEach(link => {
+    desktopNavLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetSectionId = this.getAttribute('data-section') + '-section'; // أضف '-section' للحصول على الـ ID الكامل
@@ -130,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // إزالة فئة 'active-link' من جميع الروابط
-            navLinks.forEach(navLink => navLink.classList.remove('active-link'));
+            desktopNavLinks.forEach(navLink => navLink.classList.remove('active-link'));
             // إضافة فئة 'active-link' للرابط الذي تم النقر عليه
             this.classList.add('active-link');
 
@@ -175,6 +176,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // *** NEW: Handle clicks on mobile navigation links by triggering desktop link click ***
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default link behavior
+            const targetSectionData = this.getAttribute('data-section');
+            // Find the corresponding desktop navigation link and trigger its click event
+            const correspondingDesktopLink = document.querySelector(`#desktop-nav .nav-link[data-section="${targetSectionData}"]`);
+
+            if (correspondingDesktopLink) {
+                correspondingDesktopLink.click(); // This will trigger the main section switching logic
+            }
+
+            // Close the mobile menu after initiating navigation
+            if (window.innerWidth <= 768) {
+                closeMobileMenu();
+            }
+        });
+    });
+    // ****************************************************
+
     // ========= وظائف أزرار التحميل والمودال =========
     document.getElementById('download-v1-btn').addEventListener('click', function() {
         // إضافة تأثير نبض عند النقر على زر التحميل
@@ -182,8 +203,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             this.classList.remove('animate-pulse');
         }, 700); // تم تقليل التأخير ليتناسب مع أنيميشن النبض (0.7 ثانية)
-        // يمكنك هنا إضافة منطق التحميل الفعلي
-        // alert('بدء تحميل النسخة التجريبية V1...');
     });
 
     const downloadFullBtn = document.getElementById('download-full-btn');
@@ -214,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // تفعيل الانتقال إلى قسم أخبار المشروع
-            const projectNewsLink = document.querySelector('.nav-link[data-section="project-news"]');
+            const projectNewsLink = document.querySelector('#desktop-nav .nav-link[data-section="project-news']');
             if (projectNewsLink) {
                 projectNewsLink.click(); // محاكاة النقر على الرابط لتشغيل وظيفة التنقل
             }
@@ -256,3 +275,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 7000); // إظهار رسالة الترحيب لمدة 7 ثوانٍ
     }, 3000); // إظهار رسالة الترحيب بعد 3 ثوانٍ من تحميل الصفحة
 });
+
