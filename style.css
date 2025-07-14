@@ -32,7 +32,7 @@ html, body {
 body {
     font-family: 'Tajawal', 'Inter', sans-serif; /* استخدام خطوط Tajawal للعربية و Inter للإنجليزية */
     /* تم استبدال 'image.png' بصورة مؤقتة لضمان العرض في بيئة المعاينة */
-    background-image: url('https://placehold.co/1920x1080/0A1428/FFFFFF/png?text=Inazuma+Eleven+Background'); 
+    background-image: url('181fc43893546512.png'); 
     background-size: cover; /* تغطية كاملة للخلفية */
     background-attachment: fixed; /* تثبيت الخلفية عند التمرير */
     background-position: center center; /* توسيط الخلفية */
