@@ -31,7 +31,8 @@ html, body {
 /* أنماط الجسم والخلفية */
 body {
     font-family: 'Tajawal', 'Inter', sans-serif; /* استخدام خطوط Tajawal للعربية و Inter للإنجليزية */
-    background-image: url('image.png'); /* الصورة من ملفاتك المحلية - تأكد من المسار الصحيح */
+    /* تم استبدال 'image.png' بصورة مؤقتة لضمان العرض في بيئة المعاينة */
+    background-image: url('https://placehold.co/1920x1080/0A1428/FFFFFF/png?text=Inazuma+Eleven+Background'); 
     background-size: cover; /* تغطية كاملة للخلفية */
     background-attachment: fixed; /* تثبيت الخلفية عند التمرير */
     background-position: center center; /* توسيط الخلفية */
@@ -39,7 +40,7 @@ body {
     scroll-behavior: smooth; /* تمرير سلس عند النقر على الروابط */
     position: relative; /* لتحديد موضع تأثيرات الخلفية */
     /* مؤشر الماوس على شكل كرة قدم - تم تحسينه ليكون أكثر سلاسة */
-    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjRkZEMzAwIiBkPSJNMjU2IDUxMkEyNTYgMjU2IDAgMSAwIDI1NiAwYTI1NiAyNTYgMCAxIDAgMCA1MTJ6bTAtMzUyYTg0Ljg1OCA4NC44NTggMCAw endeavors 1NjlLMTYwIDIzMi41IDIzMi41IDE2MCAyNTYgMTYwYTE2MC41IDIyOS40IDAgMCAwIDAgMzIwYTE2MC41IDE2MC41IDAgMCAwIDAtMzIwem0wIDk2YTY0IDY0IDAg11IDEgMCAxMjggNjQgNjQgMCA11IDEgMC0xMjh6Ii8+PC9zdmc+") 16 16, auto;
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjRkZEMzAwIiBkPSJNMjU2IDUxMkEyNTYgMjU2IDAgMSAwIDI1NiAwYTI1NiAyNTYgMCAxIDAgMCA1MTJ6bTAtMzUyYTg0Ljg1OCA4NC44NTggMCAw endeavors 1NjlLMTYwIDIzMi41IDIzMi41IDE2MCAyNTYgMTYwYTE2MC41IDIyOS40IDAgMCAwIDAgMzIwYTE2MC41IDE2MC41IDAgMCAwIDAtMzIwem0wIDk2YTY0IDY0IDAg11IDEgMCAxMjggNjQgNjQgMCA5MSAxIDAtMTI4eiIvPjwvc3ZnPg==") 16 16, auto;
 }
 
 /* طبقة تراكب زجاجية لزيادة التباين على الخلفية وتأثير Glassmorphism */
@@ -116,58 +117,6 @@ header.content-block-bg {
     padding-left: 1.5rem; /* لتجنب تداخل الشعار مع حافة الشاشة */
     padding-right: 1.5rem; /* لتجنب تداخل الهامبرغر مع حافة الشاشة */
 }
-
-/* القائمة الجانبية في وضع الجوال (تكون مخفية افتراضياً وتظهر بالترانسفورم) */
-#mobile-nav {
-    display: flex; /* لكي يعمل الـ flexbox داخلها */
-    flex-direction: column; /* لجعل الروابط فوق بعض */
-    align-items: center; /* توسيط الروابط أفقياً */
-    justify-content: center; /* توسيط الروابط عمودياً */
-    padding: 2rem 0; /* مساحة داخلية */
-    background-color: var(--color-dark-bg); /* استخدام لون خلفية متناسق */
-    border-left: 4px solid var(--color-primary-blue-light); /* حدود على اليسار */
-    z-index: 99; /* تأكد من أنها فوق كل شيء آخر */
-
-    /* التعديلات الجديدة لجعل القائمة تظهر من اليمين */
-    left: auto; /* إلغاء خاصية left إذا كانت موجودة */
-    right: 0; /* تثبيتها على الجانب الأيمن */
-    transform: translateX(100%); /* إخفائها بالكامل إلى اليمين */
-}
-
-/* زر الهامبرغر والإغلاق */
-#hamburger-menu-btn, #close-menu-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--color-text-light);
-    font-size: 2.5rem; /* حجم أكبر للأيقونات */
-    padding: 0.5rem;
-}
-
-/* إخفاء زر الهامبرغر وزر الإغلاق وإظهار القائمة الأفقية على الشاشات الكبيرة */
-@media (min-width: 769px) { /* هذا الـ breakpoint هو md في Tailwind */
-    #close-menu-btn {
-        display: none !important;
-    }
-    #hamburger-menu-btn {
-        display: none !important;
-    }
-    /* إظهار قائمة التنقل العادية (الأفقية) على الشاشات الكبيرة */
-    #mobile-nav {
-        position: static !important; /* إلغاء التثبيت */
-        transform: translateX(0) !important; /* إزالة التحويل */
-        width: auto !important; /* استعادة العرض التلقائي */
-        height: auto !important; /* استعادة الارتفاع التلقائي */
-        background-color: transparent !important; /* خلفية شفافة */
-        box-shadow: none !important; /* إزالة الظل */
-        flex-direction: row !important; /* لروابط أفقية على الديسكتوب */
-        justify-content: center !important;
-        align-items: center !important;
-        padding: 0 !important;
-        display: flex !important; /* تأكد من إظهارها على الديسكتوب */
-    }
-}
-
 
 /* حاوية روابط التنقل */
 .nav-links-container {
@@ -441,8 +390,6 @@ header.content-block-bg {
     object-fit: cover; /* لضمان تغطية الصورة للحاوية */
 }
 
-/* تم إزالة أنماط زر الديسكورد العائم (FAB) */
-
 /* إخفاء العناصر */
 .hidden {
     display: none;
@@ -640,8 +587,6 @@ header.content-block-bg {
         padding: 2.5rem;
         max-width: 95%;
     }
-    
-    /* تم إزالة أنماط زر الديسكورد العائم من هنا للموبايل أيضاً */
 }
 
 @media (max-width: 480px) {
@@ -714,3 +659,63 @@ header.content-block-bg {
     transform: translateY(-100px);
     transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); /* أسرع قليلاً */
 }
+
+/* New Mobile Menu Styles */
+#mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 90;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+#mobile-menu-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 256px; /* w-64 in Tailwind */
+    background-color: #0F172A; /* bg-gray-900 */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 95;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem; /* p-6 */
+}
+#mobile-menu.active {
+    transform: translateX(0);
+}
+
+/* Hide new mobile menu on desktop */
+@media (min-width: 769px) { /* This breakpoint is md in Tailwind */
+    #mobile-menu-overlay,
+    #mobile-menu {
+        display: none !important; 
+    }
+    /* Ensure the desktop navigation is visible on desktop */
+    #desktop-nav {
+        display: flex !important;
+        position: static !important;
+        transform: translateX(0) !important;
+        width: auto !important;
+        height: auto !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 !important;
+    }
+    #hamburger-menu-btn {
+        display: none !important; /* Hide hamburger button on desktop */
+    }
+}
+
